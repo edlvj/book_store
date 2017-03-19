@@ -1,0 +1,26 @@
+en:
+  labels:
+    log_in: "Log In"
+    sign_up: "Sign Up"
+    returning_customer: "Returning Customer"
+    new_customer: "New Customer"
+    dont_have_account: "Don’t have an Account?"
+    enter_email: "Enter Email"
+    password: "Password"
+    forgot_pass: "Forgot password?"
+    remember_me: "Remember me"
+    continue_to_checkout: "Continue to Checkout"
+    quik_register: "Quik register"
+    quik_notice: "You'll be able to create password later"
+    old_password: "Old password"
+    new_password: "New Password"
+    confirm_password: "Confirm password"
+    remove_account: "Remove Account"
+    please_remove: "Please Remove My Account"
+    accept: "I understand that all data will be lost"
+  setting:
+    settings: "Settings"
+    address: "Address"
+    privacy: "Privacy"
+    save: "Save"
+    

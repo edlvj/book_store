@@ -1,0 +1,17 @@
+en:
+  cart:
+    cart: 'Cart'
+    checkout: 'Checkout'
+    product: 'Product'
+    price: 'Price'
+    quantity: 'Quantity'
+    subtotal: 'SubTotal'
+    no_items: 'No items in cart'
+    enter_coupon: 'Enter Your Coupon Code'
+    update_cart: 'Update cart'
+    subtotal_pre: 'SubTotal:'
+    coupon: 'Coupon:'
+    order_total: 'Order Total:'
+    order_summary: 'Order Summary'
+    book: 'Book'
+    total: 'Total'

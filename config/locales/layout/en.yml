@@ -1,0 +1,10 @@
+en:
+  navigation:
+    home: "Home"
+    shop: "Shop"
+    sign_up: "Sign Up"
+    log_in: "Log In"
+    log_out: "Log Out"
+    settings: "Settings"
+    orders: "Orders"
+    account: "My Account"

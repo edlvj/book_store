@@ -1,0 +1,7 @@
+%main.container.general-main-wrap
+  = render 'progress'
+  = render 'order_info'
+  = render 'order_items', order: current_order
+  = render 'summary', pos: 'right', order: current_order 
+  .text-center
+    = button_to(t('confirm.place_order'), wizard_path, class: "btn btn-default mb-20", method: :patch )

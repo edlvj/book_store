@@ -1,0 +1,30 @@
+%main.container.mb-res-50
+  = render "progress"
+  = current_order.errors.inspect
+  %h3.general-subtitle= t('payment.credit_cart')
+  = form_for current_order, url: wizard_path, class: "max-600 mb-80" do |f|
+    = f.fields_for :credit_card do |ff|
+      .form-group
+        = ff.label :number, t('payment.cart_number'), :class => "control-label font-weight-light"
+        = ff.text_field :number, class: 'form-control',  placeholder: t('payment.cart_number')
+        %span.help-block
+      .row
+        .col-sm-6
+          .form-group
+            = ff.label :name, t('payment.name_on_card'), :class => "control-label font-weight-light"
+            = ff.text_field :name, class: 'form-control',  placeholder: t('payment.name_on_card')
+            %span.help-block
+        .col-sm-3
+          .form-group
+            = ff.label :expiration_date, t('payment.mm_yy'), :class => "control-label font-weight-light"
+            = ff.text_field :expiration_date, class: 'form-control',  placeholder: t('payment.mm_yy')
+            %span.help-block
+        .col-sm-3
+          .form-group.relative
+            = ff.label :cvv, t('payment.cvv'), :class => "control-label font-weight-light"
+            = ff.text_field :cvv, class: 'form-control',  placeholder: t('payment.cvv')
+            %span.help-block
+            %i.fa.fa-question-circle.general-form-help.font-18
+    = render 'summary', pos: 'left', order: current_order 
+    .text-center
+      = submit_tag(t('checkout.save_and_continue'), :class => "btn btn-default mb-80")

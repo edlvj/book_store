@@ -1,0 +1,17 @@
+- confirmed_order = current_user.queue_order 
+%main.container.general-main-wrap
+  = render "progress"
+  .text-center.mb-40
+    %h3.general-subtitle= ('complete.thank_you')
+    %p.font-weight-light= t('complete.complete_msg', email: current_user.email )
+    %p.font-weight-light 
+  .row.mb-20
+    .col-sm-6
+      = render "address_panel", order: confirmed_order
+    .col-sm-6.hidden-xs.text-right
+      %p.general-order-number.mb-0= "Order #{confirmed_order.id}"
+      %p.general-address.mb-30= confirmed_order.created_at.strftime("%B %d, %Y")
+  = render "order_items", order: confirmed_order
+  = render "summary", pos: "right", order: confirmed_order
+  .text-center
+    = link_to(t('complete.back_to_store'), books_path, class: "btn btn-default mb-20")

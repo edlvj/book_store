@@ -1,0 +1,22 @@
+.text-center
+  %h3.general-login-title= title
+  = link_to user_facebook_omniauth_authorize_path, :class => "general-login-icon" do
+    %i.fa.fa-facebook-official
+  %p.general-login-text or
+= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "general-form"}) do |f|
+  .form-group.mb-30
+    = f.label :email, t('labels.enter_email'), :class => "control-label font-weight-light"
+    = f.email_field :email, autofocus: true, :class => "form-control", placeholder: t('labels.enter_email')
+  .form-group.mb-30
+    = f.label :password, t('labels.password'), :class => "control-label font-weight-light"
+    = f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => t('labels.password')
+    = link_to t('labels.forgot_pass'), new_user_password_path, :class => "help-block in-gold-500"
+  .form-group.checkbox.text-center.mb-30
+    %label.font-weight-light.pl-0
+      - if devise_mapping.rememberable?
+        = f.check_box :remember_me, :hidden => true, :class => "checkbox-input"
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text= t('labels.remember_me')
+  .text-center
+    = f.submit "Log in", :class => "btn btn-default mb-20"

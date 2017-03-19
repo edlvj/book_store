@@ -1,0 +1,9 @@
+= form_for current_user, url: user_registration_path , method: :delete do |field|
+  .general-settings-btn
+    = field.submit t('labels.please_remove'), class: "btn mb-20"
+  .form-group.checkbox.general-settings-checkbox
+    %label.font-weight-light.pl-0
+      = check_box_tag :agree, 0, false, class: 'checkbox-input', hidden: 'hidden' 
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text= t('labels.accept')

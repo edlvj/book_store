@@ -1,0 +1,14 @@
+en:
+  orders:
+    order: 'Order %{number}'
+    my_orders: "My Orders"
+    in_progress: "Waiting for processing"
+    in_queue: "In Progress"
+    in_delivery: "In delivery"
+    delivered: "Delivered"
+    canceled: "Canceled"
+    number: "Number"
+    completed_at: "Completed at"
+    status: "Status"
+    total: "Total"
+    not_confirmed: "Not Confirmed"

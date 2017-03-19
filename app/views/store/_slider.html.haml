@@ -1,0 +1,26 @@
+#slider.carousel.slide{'data-ride': "carousel"}
+  %ol.carousel-indicators.general-carousel-indicators
+    - @latests.count.times do |index|
+      %li{ class: "#{'active' if index == 0}", 'data-target': "#slider", 'data-slide-to': index }  
+  .carousel-inner{role: "listbox"}
+    - @latests.each_with_index do |book, index|
+      .item{ class: "#{'active' if index == 0}" }
+        .row
+          .col-sm-5
+            = image_tag book.image, :class => "img-shadow general-thumbnail-img width-full" , alt: "design-book"
+          .col-sm-7
+            .mb-60
+              %h1= book.title
+              %p.lead= book.decorate.short_description
+              %p.in-grey-600.small= book.decorate.author_name
+              .general-align.pt-20
+                = form_tag carts_path, method: :post do
+                  = hidden_field_tag :book_id, book.id
+                  = hidden_field_tag :quantity, 1
+                  = button_tag t('store.buy'), type: :submit, class: "btn"
+  %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+    %span.icon-prev{'aria-hidden': "true"}
+    %span.sr-only= t('store.prev')
+  %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+    %span.icon-next{'aria-hidden': "true"}
+    %span.sr-only= t('store.next')

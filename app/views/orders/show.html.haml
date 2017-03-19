@@ -1,0 +1,5 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('orders.order', number: @order.id)
+  = render 'checkout/order_info', current_order: @order, edit: false
+  = render 'checkout/order_items', order: @order
+  = render 'checkout/summary', pos: "right", order: @order

@@ -1,0 +1,6 @@
+en:
+  valid:
+    coupon:
+      not_found: "Not found coupon with your code"
+      used: "This coupon has already used"
+      check_order: "You have already use coupon"

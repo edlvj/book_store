@@ -1,0 +1,11 @@
+%p.general-address
+  = order.order_shipping.firstname
+  %span.general-edit= edit_link(:address) if local_assigns[:edit]
+  %br
+  = order.order_shipping.address
+  %br
+  = order.order_shipping.city
+  = order.order_shipping.zipcode
+  %br
+  = order.order_shipping.country
+  %br= t('confirm.phone', :number => order.order_shipping.phone )

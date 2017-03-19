@@ -1,0 +1,24 @@
+%main.container
+  %h1.general-title-margin= t("books.catalog")
+  .hidden-xs.clearfix
+    .pull-right
+      = render 'dropdown', items: @presenter.sort_types
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        %a.filter-link
+          = t('books.all')
+          %span.badge.general-badge= books_count
+      - @categories.each do |category|
+        %li.mr-35
+          = link_to books_path(category: category.name), class: "filter-link" do
+            = category.name
+            %span.badge.general-badge= category.books.count
+  .mb-120
+    - @presenter.books.each_slice(4) do |row|
+      .row
+        - row.each do |item|
+          = render 'book', book: item
+    .text-center
+      - page_params = { sort: params[:sort], category: params[:category] }
+      = link_to_previous_page @presenter.books, t('kaminari.back_page'), class: 'btn btn-primary', params: page_params
+      = link_to_next_page @presenter.books, t('kaminari.view_more'), class: 'btn btn-primary', params: page_params

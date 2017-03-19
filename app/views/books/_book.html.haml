@@ -1,0 +1,18 @@
+.col-xs-6.col-sm-3
+  .general-thumb-wrap
+    .thumbnail.general-thumbnail
+      = image_tag book.image, :class => "img-shadow general-thumbnail-img" , alt: "design-book"
+      .thumb-hover
+        .general-thumb-link-wrap.align-center
+          = link_to book_path(book.id), :class => "thumb-hover-link button" do
+            %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+          = form_tag carts_path, method: :post do
+            = hidden_field_tag :book_id, book.id
+            = hidden_field_tag :quantity, 1
+            = button_tag '', name: nil, type: :submit, class: "thumb-hover-link" do
+              %i.fa.fa-shopping-cart.thumb-icon
+  .general-thumb-info
+    %p.general-title= book.title
+    %p.font-16.in-gold-500= book.decorate.price_in_currency
+    %span.divider-sm
+    %p.in-grey-600.small= book.decorate.author_name

@@ -1,0 +1,45 @@
+%main.container
+  %h1.general-title-margin= t('setting.settings')
+  %ul.nav.nav-tabs.mb-20{:role => "tablist"}
+    %li.mb-10.active{:role => "presentation"}
+      %a{"aria-controls": "address", "data-toggle": "tab", href: "#address", role: "tab", id: 'address_nav'}= t('setting.address')
+    %li.mb-10{:role => "presentation"}
+      %a{"aria-controls": "privacy", "data-toggle": "tab", href: "#privacy", role: "tab", id: 'privacy_nav'}= t('setting.privacy')
+  .tab-content
+    #address.tab-pane.fade.in.active.general-main-wrap{role: "tabpanel"}
+      .hidden-xs.hidden-sm
+        .row
+          .col-md-5
+            %h3.general-subtitle.mt-0= t('checkout.billing_address')
+          .col-md-5.col-md-offset-1
+            %h3.general-subtitle.mt-0= t('checkout.shipping_address')
+      .row
+        .col-md-5.mb-40
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0= t('checkout.billing_address')
+          = #user_registration 
+          = form_for user_registration_path, method: :patch do |field|
+            = render 'checkout/address_fields', field: field
+            .text-center.general-text-align
+              = submit_tag t('setting.save'), class: "btn disabled"
+        .col-md-5.col-md-offset-1.mb-25
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0= t('shipping_address')
+          = #user_registration 
+          = form_for user_registration_path, method: :patch do |field|
+            = render 'checkout/address_fields', field: field
+            .text-center.general-text-align
+              = submit_tag t('setting.save'), class: "btn disabled"
+    #privacy.tab-pane.fade{:role => "tabpanel"}
+      .row.mb-60
+        .col-sm-5
+          %p.in-gold-500.font-18.mb-25= t('labels.email')
+          = render 'email_form'
+        .col-sm-5.col-sm-offset-1
+          %p.in-gold-500.font-18.mb-25= t('labels.password')
+          %form.general-form-md.pb-25
+            = render 'password_form'
+        .col-sm-12
+          .divider-lg-bottom
+          %p.in-gold-500.font-18.mb-25.pt-20= t('labels.please_remove')
+          = render 'remove_form'

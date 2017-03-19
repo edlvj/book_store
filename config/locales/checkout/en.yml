@@ -1,0 +1,41 @@
+en:
+  check_steps:
+    address: "Address"
+    delivery: "Delivery"
+    payment: "Payment"
+    confirm: "Confirm"
+    complete: "Complete"
+  checkout:
+    checkout: "Checkout"
+    edit: "edit"
+    billing_address: "Billing Address"
+    shipping_address: "Shipping Address"
+    all_required: "all fields are required"
+    save_and_continue: "Save and Continue"
+    use_billing: "Use Billing Adress"
+    order_summary: "Order Summary"
+    item_total: "Item Total:"
+    shipping: "Shipping:"
+    order_total: "Order Total:"
+  delivery:
+    shipping_method: "Shipping method"
+    method: "Method"
+    days: "Days"
+    price: "Price"
+  payment:
+    credit_cart: "Credit Card"
+    cart_number: "Card Number"
+    name_on_card: "Name on Card"
+    mm_yy: "MM / YY"
+    cvv: "CVV"
+  confirm:
+    shipments: "Shipments"
+    payment_information: "Payment Information"
+    phone: "Phone %{number}"
+    place_order: "Place Order"
+  complete:
+    thank_you: "Thank You for your Order!"
+    complete_msg: "An order confirmation has been has been sent to %{email}"
+    back_to_store: "Back to Store"
+    
+    

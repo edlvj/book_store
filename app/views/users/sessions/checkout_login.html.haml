@@ -1,0 +1,14 @@
+%main.container
+  .row.mb-60
+    .col-sm-5
+      = render 'form', title: t('labels.returning_customer')
+    .col-sm-5.col-sm-offset-1
+      %h3.in-gold-500.mb-25.text-center= t('labels.new_customer')
+      .general-form
+        %h3.grey-600= t('labels.quik_register')
+        %p.general-login-text= t('labels.quik_notice')
+      = form_for resource, as: resource_name, html: { id: 'email_login' }, url: sign_up_path(resource, type: 'checkout') do |f|
+        .form-group.mb-30
+          = f.label :email, t('labels.email'), class: "control-label font-weight-light"
+          = f.email_field :email, placeholder: "Email", class: "form-control", type: "email"
+        = f.submit t("labels.continue_to_checkout"), class: "btn btn-default center-block mb-25"

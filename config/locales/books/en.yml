@@ -1,0 +1,26 @@
+en:
+  books:
+    catalog: "Catalog"
+    all: "All"
+    view_more: "View More"
+  sort:
+    newest: "Newest First"
+    popular: "Popular First"
+    price_lh: "Price: Low to hight"
+    price_hl: "Price: High to low"
+    title_asc: "Title: A - Z"
+    title_desc: "Title: Z - A"
+  book:
+    back_to: "Back to results"
+    materials: "Materials"
+    description: "Description"
+    publish_year: "Year of publication"
+    dimensions: "Dimensions"
+    add_to_cart: "Add to Cart"
+    reviews_count: "Reviews (%{amount})"
+    post: "Post"
+    read_more: "Read More"
+  review:
+    add_review: "Add Review"
+    title: "Title"
+    comment: "Comment"

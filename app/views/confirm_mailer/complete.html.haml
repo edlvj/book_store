@@ -1,0 +1,4 @@
+%body
+  %h1= "Hello, #{@user.name}"
+  %p= "Confirm your order on BookStore ->"
+  = link_to "Order ##{@order.id}", order_url(@order.id, host: 'localhost')

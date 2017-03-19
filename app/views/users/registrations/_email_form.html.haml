@@ -1,0 +1,6 @@
+= form_for current_user, url: user_registration_path, method: :patch, class: "general-form-md" do |field|
+  .form-group.mb-35
+    = field.label :email, t('labels.enter_email'), :class => "control-label font-weight-light"
+    = field.email_field :email, placeholder: "Enter your email", class: "form-control"
+  .general-text-align 
+    = field.submit t('setting.save'), class: "btn btn-default mb-35"

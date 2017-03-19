@@ -1,0 +1,33 @@
+= form_for @book, as: @review_form, html: { id: 'review_form'} do |f|
+  .hidden-xs.hidden-sm
+    .row
+      .col-md-8
+        %h4.general-subtitle.mb-20= t('review.add_review')
+  .row
+    .col-md-8.mb-40
+      .visible-xs.visible-sm
+        %h3.general-subtitle.mt-0= t('review.add_review')
+      .form-group.mb-20
+        .rating-stars
+          %ul#stars
+            %li.star{'title': 'Poor', 'data-value': '1'}
+              %i.fa.fa-star.fa-fw
+            %li.star{'title': 'Fair', 'data-value': '2'}
+              %i.fa.fa-star.fa-fw
+            %li.star{'title': 'Good', 'data-value': '3'}
+              %i.fa.fa-star.fa-fw
+            %li.star{'title': 'Excellent', 'data-value': '4'}
+              %i.fa.fa-star.fa-fw
+            %li.star{'title': 'Cool', 'data-value': '5'}
+              %i.fa.fa-star.fa-fw
+  = f.hidden_field :rating, id: 'review_rate'
+  .form-group.mb-20
+    = f.label :title, t('review.title'), class: "control-label.font-weight-light.in-grey-600"
+    = f.text_field :title, class: 'form-control'
+    %span.help-block
+  .form-group.mb-20  
+    = f.label :comment, t('review.comment'), class: "control-label.font-weight-light.in-grey-600"
+    = f.text_area :comment, class: 'form-control'
+    %span.help-block
+  .text-center.general-text-align.mb-20
+    = f.submit t('book.post'), class: "btn"
