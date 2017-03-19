@@ -19,5 +19,4 @@ class CreateCart < Rectify::Command
     current_order.add_item(@book_id, @quantity)
     current_order.save
   end
-
 end
