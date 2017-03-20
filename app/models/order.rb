@@ -54,7 +54,7 @@ class Order < ApplicationRecord
       add_order_item(order_item.book_id, order_item.qty).save
     end
     self.coupon = nil if order.coupon.present?
-    order.destroy && order.coupon&.update_attributes(order: self)
+    #order.destroy && order.coupon&.update_attributes(order: self)
     tap(&:save)
   end
   
