@@ -25,8 +25,8 @@ ActiveAdmin.register Review do
     end
     
     actions defaults: true do |review|
-      link_to('Approve', admin_review_path(review, params.permit(:status).merge(status: :approved)), method: :patch) + ' ' +
-      link_to('Reject', admin_review_path(review, params.permit(:status).merge(status: :declined)), method: :patch)
+      item "Approve", link_to('', admin_review_path(review, params.permit(:status).merge(status: :approved)), method: :patch)
+      item "Reject", link_to('', admin_review_path(review, params.permit(:status).merge(status: :declined)), method: :patch)
     end
   end  
 

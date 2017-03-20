@@ -19,5 +19,4 @@ class UpdateCheckout < Rectify::Command
     end
     @order.errors.any? ? broadcast(:validation) : broadcast(:ok)
   end
-
 end  

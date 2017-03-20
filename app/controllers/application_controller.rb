@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
   
   def category_list
-    @categories = Category.select(:id, :name)
+    @category_list = Category.select(:id, :name)
   end
 end

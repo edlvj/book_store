@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :orders, dependent: :destroy
   has_many :credit_cards, dependent: :destroy
+  has_one :address
   
   has_one :user_shipping,
           -> { where type: 'shipping_address' },

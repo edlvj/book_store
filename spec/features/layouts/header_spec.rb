@@ -5,7 +5,7 @@ describe 'Header', type: :feature do
     visit root_path
   end  
     
-  it 'contains name of shop' do   
+  subject 'contains name of shop' do   
     expect(page.first('.navbar-brand').text).not_to eq("")
   end
     

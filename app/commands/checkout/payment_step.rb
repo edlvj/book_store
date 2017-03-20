@@ -1,5 +1,6 @@
 module Checkout
   class PaymentStep < Rectify::Command
+    include ApplicationHelper
     def initialize(order, params, user)
       @order = order
       @params = params
@@ -28,6 +29,5 @@ module Checkout
     @card = CreditCard.create credit_card_form.to_h
     @order.update_attribute(:credit_card_id, @card.id) 
   end
-
   end  
 end

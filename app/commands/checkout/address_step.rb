@@ -22,7 +22,7 @@ module Checkout
     def validate_addresess
       @billing = AddressForm.new(billing_params)
       @shipping = AddressForm.new(shipping_params)
-      @billing.valid? && @shiping.valid?
+      @billing.valid? && @shipping.valid?
     end 
     
     def create_addresses
@@ -30,17 +30,18 @@ module Checkout
     end
 
     def billing_params
-      @params[:order][:billing_address].merge( {user_id: @user.id, order_id: @order.id, type: 'billing_address'})
+      @params[:order][:billing_address].merge( {user_id: @user.id, order_id: @order.id, addressable_type: 'billing_address'})
     end
     
     def shipping_params
       @shipp = @params[:use_billing] ? @params[:order][:shipping_address] : @params[:order][:billing_address]
-      @shipp.merge(user_id: @user.id, order_id: @order.id, type: 'shipping_address')
+      @shipp.merge(user_id: @user.id, order_id: @order.id, addressable_type: 'shipping_address')
     end
     
     def set_address(type)
-      @address_type = AddressForm.new(type).to_h
-      Address.create @address_type
+     @address_type = AddressForm.new(type).to_h
+     @addr = Address.new @address_type
+     @addr.save
     end  
     
   end

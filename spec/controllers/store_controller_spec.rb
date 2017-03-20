@@ -1,7 +1,7 @@
 require 'rails_helper'
 include Support::CanCanStub
 
-describe BooksController, type: :controller do
+describe StoreController, type: :controller do
   subject { create :book }
   let(:user) { create :user }
   
@@ -18,22 +18,4 @@ describe BooksController, type: :controller do
     end
   end
   
-  describe 'GET #show' do
-    context 'when book found' do
-      before do
-        get :show, params: { id: subject.id }
-      end
-      it 'assigns book' do
-        expect(assigns(:book)).to eq(subject)
-      end
-
-      it 'assigns the requested book' do
-        expect(assigns(:book)).to eq(subject)
-      end
-      it 'renders the :show template' do
-        expect(response).to render_template(:show)
-      end
-    end
-  end
-
 end  

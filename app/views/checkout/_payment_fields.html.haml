@@ -1,0 +1,22 @@
+= f.fields_for :credit_card do |ff|
+  .form-group{:class => ("has-error" if has_error?(current_order, :number) )}
+    = ff.label :number, t('payment.cart_number'), class: "control-label font-weight-light"
+    = ff.text_field :number, class: 'form-control',  placeholder: t('payment.cart_number')
+    %span.help-block= parse_error(current_order, :number)
+  .row
+    .col-sm-6
+      .form-group{:class => ("has-error" if has_error?(current_order, :name) )}
+        = ff.label :name, t('payment.name_on_card'), class: "control-label font-weight-light"
+        = ff.text_field :name, class: 'form-control',  placeholder: t('payment.name_on_card')
+        %span.help-block= parse_error(current_order, :name)
+    .col-sm-3
+      .form-group{:class => ("has-error" if has_error?(current_order, :expiration_date) )}
+        = ff.label :expiration_date, t('payment.mm_yy'), class: "control-label font-weight-light"
+        = ff.text_field :expiration_date, class: 'form-control',  placeholder: t('payment.mm_yy')
+        %span.help-block= parse_error(current_order, :expiration_date)
+    .col-sm-3
+      .form-group.relative{:class => ("has-error" if has_error?(current_order, :cvv) )}
+        = ff.label :cvv, t('payment.cvv'), class: "control-label font-weight-light"
+        = ff.text_field :cvv, class: 'form-control',  placeholder: t('payment.cvv')
+        %span.help-block= parse_error(current_order, :cvv)
+        %i.fa.fa-question-circle.general-form-help.font-18

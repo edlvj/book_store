@@ -22,6 +22,6 @@ class AddToCart < Rectify::Command
   end
 
   def item_errors
-    order_item.errors.full_messages.join('. ') if order_item.present?
+    @order_item.errors.full_messages.join('. ') if order_item.present?
   end
 end  

@@ -40,9 +40,9 @@ Category.find_each do |category|
   rand(BOOKS_IN_CATEGORY_RANGE).times do
     Book.find_or_create_by! title: FFaker::CheesyLingo.title,
                             price: rand(BOOK_PRICE_RANGE).round(2),
-                            description: FFaker::HealthcareIpsum.paragraphs,
-                            category_id: category.id
-                            pub_year: [1990..(Date.today.year + 1)].sample
+                            description: FFaker::HealthcareIpsum.paragraph,
+                            category_id: category.id,
+                            pub_year: 1990..(Date.today.year + 1).sample,
                             dimension: 'H:7.0 x W:4.4 x D:10.0'
   end
 end
@@ -73,6 +73,9 @@ User.find_each do |user|
     user.orders << order
   end
 end
+
+Country.create name: "Ukraine"
+Country.create name: "USA"
 
 Shipping.create company: 'Delivery Next Day', costs: 5.00, days: 7
 Shipping.create company: 'Ali Express', costs: 10.00, days:6

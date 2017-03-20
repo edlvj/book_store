@@ -8,12 +8,12 @@ class Order < ApplicationRecord
   has_one :coupon, dependent: :nullify
   
   has_one :order_shipping,
-          -> { where type: 'shipping_address' },
+          -> { where addressable_type: 'shipping_address' },
           class_name: Address, foreign_key: :order_id,
           dependent: :destroy
   
   has_one :order_billing,
-          -> { where type: 'billing_address' },
+          -> { where addressable_type: 'billing_address' },
           class_name: Address, foreign_key: :order_id,
           dependent: :destroy
   
@@ -28,6 +28,10 @@ class Order < ApplicationRecord
 
     event :queued do
       transitions :from => :in_progress, :to => :in_queue
+    end
+    
+    event :to_delivery do
+      transitions :from => :in_queue, :to => :in_delivery
     end
   end
   

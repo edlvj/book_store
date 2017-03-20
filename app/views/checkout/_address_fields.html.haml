@@ -1,27 +1,28 @@
-.form-group
-  = field.label :firstname, "First Name", :class => "control-label font-weight-light"
+.form-group{:class => ("has-error" if has_error?(current_order, :firstname) )}
+  = field.label :firstname, "First Name", class:  "control-label font-weight-light"
   = field.text_field :firstname, class: 'form-control',  placeholder: "First Name"
-  %span.help-block
-.form-group
-  = field.label :lastname, "Last Name", :class => "control-label font-weight-light"
+  %span.help-block= parse_error(current_order, :firstname)
+.form-group{:class => ("has-error" if has_error?(current_order, :lastname) )}
+  = field.label :lastname, "Last Name", class: "control-label font-weight-light"
   = field.text_field :lastname, class: 'form-control',  placeholder: "Last Name"
-  %span.help-block
-.form-group
-  = field.label :address, "Address", :class => "control-label font-weight-light"
+  %span.help-block= parse_error(current_order, :lastname)
+.form-group{:class => ("has-error" if has_error?(current_order, :address) )}
+  = field.label :address, "Address", class: "control-label font-weight-light"
   = field.text_field :address, class: 'form-control',  placeholder: "Address"
-  %span.help-block
-.form-group
-  = field.label :city, "City", :class => "control-label font-weight-light"
+  %span.help-block= parse_error(current_order, :address)
+.form-group{:class => ("has-error" if has_error?(current_order, :city) )}
+  = field.label :city, "City", class: "control-label font-weight-light"
   = field.text_field :city, class: 'form-control',  placeholder: "City"
-  %span.help-block
-.form-group
-  = field.label :zipcode, "Zip", :class => "control-label font-weight-light"
+  %span.help-block= parse_error(current_order, :city)
+.form-group{:class => ("has-error" if has_error?(current_order, :zipcode) )}
+  = field.label :zipcode, "Zip", class: "control-label font-weight-light"
   = field.text_field :zipcode, class: 'form-control',  placeholder: "Zip"
-  %span.help-block
-.form-group
-  = field.label :country, "Country", :class => "control-label font-weight-light"
+  %span.help-block= parse_error(current_order, :zipcode)
+.form-group{:class => ("has-error" if has_error?(current_order, :country,) )}
+  = field.label :country, "Country", class: "control-label font-weight-light"
   = field.collection_select :country, Country.order(:name), :id, :name, {:prompt => 'Select a country'}, { :class => "form-control"}
-  %span.help-block
-.form-group
-  = field.label :phone, "Phone", :class => "control-label font-weight-light"
+  %span.help-block= parse_error(current_order, :country,)
+.form-group{:class => ("has-error" if has_error?(current_order, :phone) )}
+  = field.label :phone, "Phone", class: "control-label font-weight-light"
   = field.text_field :phone, class: 'form-control',  placeholder: "Example +355 66 123 4567"
+  %span.help-block= parse_error(current_order, :phone)

@@ -1,6 +1,4 @@
 %main.container
-  = current_order.errors.inspect
-  = parse_error(current_order, :firstname)
   = render 'progress'
   = form_for current_order, url: wizard_path do |f|
     .hidden-xs.hidden-sm
@@ -15,7 +13,7 @@
         .visible-xs.visible-sm
           %h3.general-subtitle= t('checkout.billing_address')
           %p.general-info-text= t('checkout.all_required')
-        = render 'address_form', f: f, type: :billing_address
+        = render 'address_form', type: :billing_address, f: f
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle= t('checkout.shipping_address')

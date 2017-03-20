@@ -18,7 +18,7 @@
           %li.dropdown
             = link_to t("navigation.shop"), books_path, { class: "dropdown-toggle",  role: "button", 'data-toggle': "dropdown", 'aria-haspopup': "true", 'aria-expanded': "false" }
             %ul.dropdown-menu
-              - @categories.each do |category|
+              - @category_list.each do |category|
                 %li= link_to category.name, store_index_path(category: category.name)
               
             - if user_signed_in?

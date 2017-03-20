@@ -20,4 +20,4 @@
         %td
           %span.font-16.in-grey-900.font-weight-light= t("orders.#{order.aasm_state}")
         %td
-          %strong.font-16= order.decorate.total_sum
+          %strong.font-16= price_in_currency(order.decorate.total_sum)

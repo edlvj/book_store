@@ -1,6 +1,6 @@
 %main.container.general-main-wrap
   = render 'progress'
-  = render 'order_info'
+  = render 'order_info', edit: true
   = render 'order_items', order: current_order
   = render 'summary', pos: 'right', order: current_order 
   .text-center

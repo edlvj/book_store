@@ -24,13 +24,11 @@ class ValidateStep < Rectify::Command
   end
   
   def delivery_able?
-   # @order.order_billing && @order.order_shipping
-    true
+    @order.order_billing && @order.order_shipping
   end
   
   def payment_able?
-  #  delivery_able? && 
-    @order.shipping.present?
+    delivery_able? &&  @order.shipping.present?
   end
 
   def confirm_able?

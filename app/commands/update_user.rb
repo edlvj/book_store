@@ -25,5 +25,4 @@ class UpdateUser < Rectify::Command
     @params.require(:user).permit(:email, :password, :password_confirmation,
                                  :current_password)
   end
-
 end  

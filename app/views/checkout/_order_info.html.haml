@@ -8,12 +8,12 @@
   .col-sm-3
     %h3.general-subtitle= t('confirm.shipments')
     %p.general-address
-      = current_order.shipping_id
-      %span.general-edit= edit_link(:address) if local_assigns[:edit]
+      = current_order.shipping.company
+      %span.general-edit= edit_link(:address) if edit
   .col-sm-3
     %h3.general-subtitle= t('confirm.payment_information')
     %p.general-address
       = current_order.credit_card.number
-      %span.general-edit= edit_link(:payment) if local_assigns[:edit]
+      %span.general-edit= edit_link(:payment) if edit
       %br
       = current_order.credit_card.expiration_date

@@ -15,7 +15,7 @@ class CheckoutController < ApplicationController
   
   def update
     UpdateCheckout.call(params, current_order, step) do
-      on(:ok)            { next_wizard_path }
+      on(:ok)            { redirect_to next_wizard_path }
       on(:invalid)       { render_wizard alert: t('flash.failure.step') }
       on(:validation)    { render_wizard }
     end

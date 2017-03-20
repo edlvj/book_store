@@ -6,7 +6,7 @@ class AddressForm < Rectify::Form
   attribute :zipcode,          String
   attribute :phone,            String
   attribute :country,     String
-  attribute :type, String
+  attribute :addressable_type, String
   attribute :order_id,   Integer
   attribute :user_id,   Integer
   
@@ -17,7 +17,7 @@ class AddressForm < Rectify::Form
           :zipcode,
           :phone,
           :country,
-          :type,
+          :addressable_type,
           presence: true
           
   validates :firstname, :lastname, :city, length: { maximum: 50 }

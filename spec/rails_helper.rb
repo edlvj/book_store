@@ -6,6 +6,10 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
 require 'rspec/rails'
+require 'shoulda/matchers'
+require 'aasm/rspec'
+require 'with_model'
+
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/rspec/matchers'
@@ -27,6 +31,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers
+  config.extend WithModel
 
   config.use_transactional_fixtures = true
   

@@ -11,9 +11,9 @@
         %td
           %p.font-16= t('checkout.shipping')
         %td
-          %p.font-16
+          %p.font-16= price_in_currency(order.shipping_total)
     %tr
       %td
         %p.font-16= t('checkout.order_total')
       %td
-        %p.font-16= price_in_currency(order.sub_total)
+        %p.font-16= price_in_currency(order.total_cost)
