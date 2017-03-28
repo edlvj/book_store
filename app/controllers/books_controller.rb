@@ -2,11 +2,11 @@ class BooksController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @presenter = Books::MainPresenter.new(params)
+    @presenter = Books::CatalogPresenter.new(params)
   end
   
   def show
-    @review_form = ReviewForm.new
+    @review_form = Review.new
   end
   
   def update
@@ -19,5 +19,4 @@ class BooksController < ApplicationController
       end
     end
   end 
-  
 end

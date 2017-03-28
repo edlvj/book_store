@@ -7,20 +7,22 @@ class User < ApplicationRecord
   has_one :address
   
   has_one :user_shipping,
-          -> { where type: 'shipping_address' },
+          -> { where addressable_type: 'shipping_address' },
           class_name: Address, foreign_key: :user_id,
           dependent: :destroy
           
    has_one :user_billing,
-          -> { where type: 'billing_address' },
-          class_name: Address, foreign_key: :order_id,
+          -> { where addressable_type: 'billing_address' },
+          class_name: Address, foreign_key: :user_id,
           dependent: :destroy
   
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name  
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+      u.email = auth.info.email
+      u.password = Devise.friendly_token[0,20]
+      u.firstname = auth.info.first_name
+      u.lastname = auth.info.last_name
+      
       user.image = auth.info.image 
     end
   end

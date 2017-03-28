@@ -1,15 +1,15 @@
 .row.mb-20
   .col-sm-3
     %h3.general-subtitle= t('checkout.shipping_address')
-    = render 'checkout/address_panel', order: current_order
+    = render 'checkout/address_panel', order: current_order, edit: true
   .col-sm-3
     %h3.general-subtitle= t('checkout.billing_address')
-    = render 'checkout/address_panel', order: current_order
+    = render 'checkout/address_panel', order: current_order, edit: true
   .col-sm-3
     %h3.general-subtitle= t('confirm.shipments')
     %p.general-address
       = current_order.shipping.company
-      %span.general-edit= edit_link(:address) if edit
+      %span.general-edit= edit_link(:delivery) if edit
   .col-sm-3
     %h3.general-subtitle= t('confirm.payment_information')
     %p.general-address

@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   include ApplicationHelper
   
   def index
-    @coupon_form = CouponForm.new
+    @coupon_form = Coupon.new
   end
   
   def create

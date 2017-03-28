@@ -5,12 +5,12 @@ class Ability
     case user
       when User
         can [:read, :update], [Book, Category]
-        can [:create], Review
+        can :create, Review
         can :update, Coupon
         can :manage, OrderItem
         can :read, Order
       when AdminUser  
-         can :read, [Address, Coupon, CreditCard, User, Shipping]
+         can :read, [Address, Coupon, CreditCard, User, AdminUser]
          can :manage, [Author, Book, Category, AdminUser, OrderItem]
          can :update, Order
       else

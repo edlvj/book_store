@@ -17,6 +17,14 @@ en:
     item_total: "Item Total:"
     shipping: "Shipping:"
     order_total: "Order Total:"
+  address:
+    firstname: "First Name"
+    lastname: "Last Name"
+    address: "Address"
+    city: "City"
+    zip: "Zip"
+    select_country: "Select a country"
+    example_phone: "Example +355 66 123 4567"
   delivery:
     shipping_method: "Shipping method"
     method: "Method"

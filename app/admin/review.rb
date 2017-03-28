@@ -10,7 +10,7 @@ ActiveAdmin.register Review do
     column :user, sortable: :user do |review|
       review.user.name
     end
-    column :status, sortable: :status do |review|
+    state_column :state, sortable: :state, states: { approved: "approved" , declined: "rejected"  } do |review|
       review.state
     end
     column :rating, sortable: :rating do |review|
@@ -25,8 +25,10 @@ ActiveAdmin.register Review do
     end
     
     actions defaults: true do |review|
-      item "Approve", link_to('', admin_review_path(review, params.permit(:status).merge(status: :approved)), method: :patch)
-      item "Reject", link_to('', admin_review_path(review, params.permit(:status).merge(status: :declined)), method: :patch)
+      if review.state == :pending
+        item link_to('Approve ', admin_review_path(review, params.permit(:status).merge(status: :approved)), method: :patch)
+        item link_to('Reject ', admin_review_path(review, params.permit(:status).merge(status: :declined)), method: :patch)
+      end  
     end
   end  
 

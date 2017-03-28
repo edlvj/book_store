@@ -21,10 +21,10 @@
         = content_tag(:span, price_in_currency(item.book.price), class: "font-16 in-gold-500")
       %td
         .input-group
-          = content_tag(:a, :onclick => "decQty(#{"'qty_#{item.id}'"})", :class => "input-link") do
+          = content_tag(:a, onclick: "decQty(#{"'qty_#{item.id}'"})", class: "input-link") do
             %i.fa.fa-minus.line-height-40
-          = ff.text_field :qty, value: item.qty, :class => "form-control quantity-input", id: "qty_#{item.id}"
-          = content_tag(:a, :onclick => "incQty(#{"'qty_#{item.id}'"})", :class => "input-link") do
+          = ff.text_field :qty, value: item.qty, class: "form-control quantity-input", id: "qty_#{item.id}"
+          = content_tag(:a, onclick: "incQty(#{"'qty_#{item.id}'"})", class: "input-link") do
             %i.fa.fa-plus.line-height-40
       %td
         %span.font-16.in-gold-500= price_in_currency(item.sub_total)

@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+main {
+  margin-top: 30px;
+  flex: 1;
+}
+
+footer {
+  flex: none;
+}
+
 .in-white {
   color: white !important;
 }
@@ -64,6 +73,9 @@ html {
 
 body {
   margin: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 article,
@@ -9081,3 +9093,21 @@ body {
 .rating-stars ul > li.star.selected > i.fa {
   color:#C59C71;
 }
+
+.notice {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.alert {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}  

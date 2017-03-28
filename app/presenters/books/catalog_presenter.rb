@@ -1,5 +1,5 @@
 module Books
-  class MainPresenter
+  class CatalogPresenter
     attr_reader :params
   
     def initialize(params)
@@ -11,13 +11,13 @@ module Books
     end  
     
     def sort_types
-      @sort_types ||= Book::SORT_TYPES
+      @sort_types ||= BookSort::TYPES
     end
     
     private
     
     def books_query
-      Book.sorting_by(params[:sort]).by_category(params[:category]).page(params[:page])
+      BookSort.new(params[:sort], params[:category], params[:page]).query
     end  
   end
 end

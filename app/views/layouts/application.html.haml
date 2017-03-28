@@ -9,7 +9,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'layouts/nav'
-  %p.notice.text-center= notice
-  %p.alert.text-center= alert
+    - if notice
+      %p.notice.text-center= notice
+    - if alert
+      %p.alert.text-center= alert
+  
   = yield
   = render 'layouts/footer'

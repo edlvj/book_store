@@ -7,11 +7,11 @@
     %p.font-weight-light 
   .row.mb-20
     .col-sm-6
-      = render "address_panel", order: confirmed_order
+      = render "address_panel", order: confirmed_order, edit: false
     .col-sm-6.hidden-xs.text-right
-      %p.general-order-number.mb-0= "Order #{confirmed_order.id}"
+      %p.general-order-number.mb-0= "Order #R#{confirmed_order.id}"
       %p.general-address.mb-30= confirmed_order.created_at.strftime("%B %d %Y")
-  = render "order_items", order: confirmed_order
+  = render "order_items", order: confirmed_order, edit: false
   = render "summary", pos: "right", order: confirmed_order
   .text-center
     = link_to(t('complete.back_to_store'), books_path, class: "btn btn-default mb-20")

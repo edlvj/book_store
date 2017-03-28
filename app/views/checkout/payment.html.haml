@@ -1,7 +1,7 @@
 %main.container.mb-res-50
   = render "progress"
   %h3.general-subtitle= t('payment.credit_cart')
-  = form_for current_order, url: wizard_path, class: "max-600 mb-80" do |f|
+  = simple_form_for current_order, url: wizard_path, class: "max-600 mb-80" do |f|
     = render 'payment_fields', f: f
     = render 'summary', pos: 'left', order: current_order 
     .text-center

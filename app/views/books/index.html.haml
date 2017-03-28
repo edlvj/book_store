@@ -5,10 +5,10 @@
       = render 'dropdown', items: @presenter.sort_types
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
-        %a.filter-link
+        = link_to books_path, class: "filter-link" do
           = t('books.all')
           %span.badge.general-badge= books_count
-      - @categories.each do |category|
+      - @category_list.each do |category|
         %li.mr-35
           = link_to books_path(category: category.name), class: "filter-link" do
             = category.name

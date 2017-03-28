@@ -18,10 +18,10 @@
           = hidden_field_tag :book_id, @book.id
           .col-xs-5.col-md-3  
             .input-group.general-position
-              = content_tag(:a, :onclick => "decQty('quantity')", class: "input-link") do
+              = content_tag(:a, onclick: "decQty('quantity')", class: "input-link") do
                 %i.fa.fa-minus.line-height-40
               = text_field_tag :quantity, 1, class: 'form-control quantity-input'
-              = content_tag(:a, :onclick => "incQty('quantity')", class: "input-link") do
+              = content_tag(:a, onclick: "incQty('quantity')", class: "input-link") do
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
             = button_tag t('book.add_to_cart'), type: :submit, class: "btn btn-default pull-right general-position"
@@ -41,8 +41,10 @@
         .clearfix
           %p.general-item-info.pull-right= @book.dimension
           %p.break-word= t('book.dimensions')
-  .mb-80
     = content_tag(:h3, t('book.reviews_count', amount: @book.reviews.approved.count), class: "in-gold-500 mb-25" )
     = render @book.reviews
   - if can? :create, Review
     = render 'reviews/form'
+  - else
+    = link_to t('review.sign_in'), new_user_session_path, class: "in-grey-600 small"
+    

@@ -1,5 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
+  include Rectify::ControllerHelpers
+  
+  before_action :set_address, only: [:edit, :update]
+  
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -9,8 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
-   # @billing = current_user.user_billing
-   # @shipping = current_user.user_shipping
     super
   end
 
@@ -30,13 +31,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
   
   def update_address
-    UpdateAddress.call(addressable: current_user, params: params) do
+    UpdateAddress.call(current_user, params) do
       on(:valid) do
-        #success_update('address')
+        redirect_to setting_path, notice: t("flash.success.address_update")
       end
-      on(:invalid) do |addresses|
-        expose addresses
-       # failure_update('address')
+      on(:invalid) do |errors|
+        expose errors if errors
+        #raise errors.inspect
+        flash[:alert] = t("flash.failure.address_update")
+        render :edit
       end
     end
   end
@@ -50,6 +53,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         flash_render :edit, alert: t("flash.failure.privacy_update")
       end
     end
+  end 
+  
+  def set_address
+    @address = Address.find_by(user_id: current_user.id) || Address.new
+    @billing_address = Address.where(user_id: current_user.id, addressable_type: 'billing_address').first
+    @shipping_address = Address.where(user_id: current_user.id, addressable_type: 'shipping_address').first
   end  
-
 end

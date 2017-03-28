@@ -1,13 +1,13 @@
 #slider.carousel.slide{'data-ride': "carousel"}
   %ol.carousel-indicators.general-carousel-indicators
-    - @latests.count.times do |index|
+    - latests.count.times do |index|
       %li{ class: "#{'active' if index == 0}", 'data-target': "#slider", 'data-slide-to': index }  
   .carousel-inner{role: "listbox"}
-    - @latests.each_with_index do |book, index|
+    - latests.each_with_index do |book, index|
       .item{ class: "#{'active' if index == 0}" }
         .row
           .col-sm-5
-            = image_tag book.image, :class => "img-shadow general-thumbnail-img width-full" , alt: "design-book"
+            = image_tag book.image, class: "img-shadow general-thumbnail-img width-full" , alt: "design-book"
           .col-sm-7
             .mb-60
               %h1= book.title

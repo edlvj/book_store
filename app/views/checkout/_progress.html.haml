@@ -2,6 +2,10 @@
 %ul.steps.list-inline
   - wizard_steps.each_with_index do |step, index|
     = content_tag(:li, class: is_step_active(step)) do
-      %span.step-number= index + 1
+      - if is_step_active(step) == "step done"
+        %span.step-number
+          %i.fa.fa-check.step-icon
+      - else
+        %span.step-number= index + 1
       %span.step-text.hidden-xs= t("check_steps.#{step}")
     - haml_tag 'li.step-divider' if wizard_steps.last != step

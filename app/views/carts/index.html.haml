@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
-  - if current_order.order_items
+  - if current_order.order_items.present?
     %h1.general-title-margin= t('cart.cart')
     .hidden-xs
     = form_for current_order, url: cart_path(current_order.id), method: :put do |f|
@@ -8,4 +8,4 @@
         = render 'carts/summary'
         = submit_tag t('cart.checkout'), class: "btn btn-default mb-20 hidden-xs center-block", name: :to_checkout
   - else
-    %h1.general-title-margin t('cart.no_items')
+    %h1.general-title-margin= t('cart.no_items')

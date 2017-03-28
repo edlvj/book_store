@@ -15,21 +15,22 @@
             %h3.general-subtitle.mt-0= t('checkout.shipping_address')
       .row
         .col-md-5.mb-40
-          .visible-xs.visible-sm
+          .visible-xs.visible-sm        
             %h3.general-subtitle.mt-0= t('checkout.billing_address')
-          = #user_registration 
-          = form_for user_registration_path, method: :patch do |field|
-            = render 'checkout/address_fields', field: field
+          = simple_form_for @address, url: setting_edit_path, method: :patch do |f|
+            = f.simple_fields_for :billing_address, @billing_address, id: "user_billing_address" do |field|
+              = render 'checkout/address_fields', field: field
             .text-center.general-text-align
-              = submit_tag t('setting.save'), class: "btn disabled"
+              = submit_tag t('setting.save'), class: "btn"
         .col-md-5.col-md-offset-1.mb-25
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0= t('shipping_address')
-          = #user_registration 
-          = form_for user_registration_path, method: :patch do |field|
-            = render 'checkout/address_fields', field: field
+          = simple_form_for @address, url: setting_edit_path , method: :patch do |f|
+            = f.simple_fields_for :shipping_address, @shipping_address, id: "user_shipping_address" do |field|
+              = render 'checkout/address_fields', field: field
             .text-center.general-text-align
-              = submit_tag t('setting.save'), class: "btn disabled"
+              = submit_tag t('setting.save'), class: "btn"
+    
     #privacy.tab-pane.fade{:role => "tabpanel"}
       .row.mb-60
         .col-sm-5

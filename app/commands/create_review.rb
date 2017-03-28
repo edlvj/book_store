@@ -16,7 +16,7 @@ class CreateReview < Rectify::Command
   end
   
   def review_form
-    @review_form ||= ReviewForm.from_params(update_params)
+    @review_form ||= ReviewForm.new(update_params)
   end
   
   def update_params

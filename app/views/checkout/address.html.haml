@@ -1,6 +1,6 @@
 %main.container
   = render 'progress'
-  = form_for current_order, url: wizard_path do |f|
+  = simple_form_for current_order, url: wizard_path do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -13,10 +13,10 @@
         .visible-xs.visible-sm
           %h3.general-subtitle= t('checkout.billing_address')
           %p.general-info-text= t('checkout.all_required')
-        = render 'address_form', type: :billing_address, f: f
+        = render 'address_form', type: :billing_address, f: f, form: @billing_address
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle= t('checkout.shipping_address')
-        = render 'address_form', f: f, type: :shipping_address
+        = render 'address_form', f: f, type: :shipping_address, form: @shipping_address
     = render 'summary', pos: 'left', order: current_order
     = button_tag t('checkout.save_and_continue'), class: "btn center-block mb-20"

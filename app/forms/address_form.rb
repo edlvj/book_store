@@ -5,8 +5,8 @@ class AddressForm < Rectify::Form
   attribute :city,             String
   attribute :zipcode,          String
   attribute :phone,            String
-  attribute :country,     String
   attribute :addressable_type, String
+  attribute :country_id,     Integer
   attribute :order_id,   Integer
   attribute :user_id,   Integer
   
@@ -16,7 +16,7 @@ class AddressForm < Rectify::Form
           :city,
           :zipcode,
           :phone,
-          :country,
+          :country_id,
           :addressable_type,
           presence: true
           

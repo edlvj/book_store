@@ -1,10 +1,10 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      = image_tag book.image, :class => "img-shadow general-thumbnail-img" , alt: "design-book"
+      = image_tag book.image, class: "img-shadow general-thumbnail-img" , alt: "design-book"
       .thumb-hover
         .general-thumb-link-wrap.align-center
-          = link_to book_path(book.id), :class => "thumb-hover-link button" do
+          = link_to book_path(book.id), class: "thumb-hover-link button" do
             %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
           = form_tag carts_path, method: :post do
             = hidden_field_tag :book_id, book.id

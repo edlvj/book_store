@@ -9,6 +9,7 @@ gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.18'
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'inherited_resources'
+gem 'activeadmin_addons'
 gem 'devise', '4.2.0'
 gem 'haml-rails', '~> 0.9'
 gem 'aasm', '4.11.1'
@@ -30,6 +31,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'simple_form'
 
 
 group :development, :test do

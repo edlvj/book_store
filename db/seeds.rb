@@ -20,7 +20,8 @@ AdminUser.create!(email: 'admin@example.com',
             
 USERS_AMOUNT.times do
   User.create! email: "#{rand(1..20)}_#{FFaker::Internet.free_email}",
-                  name: FFaker::Name.first_name,
+                  firstname: FFaker::Name.first_name,
+                  lastname: FFaker::Name.last_name,
                   password: 'password',
                   password_confirmation: 'password'
 end
@@ -42,7 +43,7 @@ Category.find_each do |category|
                             price: rand(BOOK_PRICE_RANGE).round(2),
                             description: FFaker::HealthcareIpsum.paragraph,
                             category_id: category.id,
-                            pub_year: 1990..(Date.today.year + 1).sample,
+                            pub_year: rand(1990..Date.today.year),
                             dimension: 'H:7.0 x W:4.4 x D:10.0'
   end
 end
@@ -57,7 +58,7 @@ User.find_each do |user|
   card = CreditCard.create!(number: 5105105105105100,
                             cvv: 111,
                             expiration_date: "#{Time.now.year}/#{Time.now.month}",
-                            name: user.name)
+                            name: user.firstname)
   user.credit_cards << card                          
 end
 

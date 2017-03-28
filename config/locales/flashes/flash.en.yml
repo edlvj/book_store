@@ -8,9 +8,11 @@ en:
       privacy_update: "Your privacy data wasn't updated"
       confirm_terms: "You must confirm terms about destroy account"
       step: "You dom't able perform this step"
+      address_update: "You address wasn't updated"
     success:
       created_review: "Your review successfully created and sent for approval by administator"
       book_add: "To cart successfully added %{count} books"
       book_destroy: "Book '%{title}' deleted from yout cart"
       cart_update: "Cart successfully updated"
       privacy_update: "Your privacy data successfully updated"
+      address_update: "You address successfully updated"

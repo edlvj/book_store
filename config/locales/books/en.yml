@@ -21,6 +21,7 @@ en:
     post: "Post"
     read_more: "Read More"
   review:
+    sign_in: "Sign in stay customer review"
     add_review: "Add Review"
     title: "Title"
     comment: "Comment"
