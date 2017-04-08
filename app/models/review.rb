@@ -17,5 +17,4 @@ class Review < ApplicationRecord
     end
   end
   
-  scope :approved, -> { where(state: :approved) }
 end
