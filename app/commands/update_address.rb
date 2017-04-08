@@ -1,54 +1,40 @@
 class UpdateAddress < Rectify::Command
+  include UserAddress
   attr_reader :user, :params
   
   def initialize(user, params)
     @user = user
     @params = params.permit!
-    @errors = {}
-    @billing = Address.where(user_id: @user.id, addressable_type: 'billing_address').first || Address.new
-    @shipping = Address.where(user_id: @user.id, addressable_type: 'shipping_address').first || Address.new
+    local_params = { user_id: user.id }
+    set_params(params[:address], local_params)
+    set_addresses(user)
   end
   
   def call
-    if check_address && addresses_update
+    if addresses_valid? && addresses_update
       broadcast :valid 
     else
-      broadcast :invalid, @errors
+      broadcast :invalid, addresses_errors
     end
   end
   
-  def check_address
-    if @params[:address][:billing_address].present?
-      @billing_address = AddressForm.new(billing_params) 
-      @billing_address.valid? 
-      @errors[:billing_address] = @billing_address
-      return true
-    end   
-     
-    if @params[:address][:shipping_address]
-      @shipping_address = AddressForm.new(shipping_params)
-      @shipping_address.valid?
-      @errors[:shipping_address] = @shipping_address
-      return true
-    end  
-  end 
+  private
+  
+  def addresses_errors
+    [curr_address].map { |address| [ address.addressable_type, address] }.to_h
+  end
 
+  def addresses_valid?
+    [curr_address].map(&:valid?).all?
+  end
+  
   def addresses_update
-    return set_address(billing_params) if @params[:address][:billing_address].present?
-    return set_address(shipping_params) if @params[:address][:shipping_address].present?
+    [curr_address].map do |address|
+      eval("@#{address.addressable_type}").update_attributes(address.to_h.except(:id))
+    end
   end
-
-  def billing_params
-    @params[:address][:billing_address].merge({user_id: @user.id, addressable_type: 'billing_address'})
-  end
-
-  def shipping_params
-    @params[:address][:shipping_address].merge({user_id: @user.id, addressable_type: 'shipping_address'})
-  end
-
-  def set_address(type)
-    @address_type = AddressForm.new(type).to_h.except(:id)
-    return @billing.update_attributes(@address_type) if type == billing_params
-    return @shipping.update_attributes(@address_type) if type == shipping_params  
-  end
+  
+  def curr_address
+    @curr_address = @params[:address][:billing_address] ? @billing : @shipping
+  end  
 end  

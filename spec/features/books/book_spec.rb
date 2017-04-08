@@ -14,6 +14,6 @@ feature 'Show book' do
   
   scenario 'Must redirect to cart path' do
     find('.btn.btn-default', I18n.t('book.add_to_cart')).click
-    expect(page.current_path).to eq carts_path
+    expect(page).to have_content(I18n.t('flash.success.book_add', count: 1))
   end  
 end  

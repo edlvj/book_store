@@ -8,10 +8,10 @@ class AddToCart < Rectify::Command
   end
 
   def call
-    if order_item.save && order.save
+    if order_item.valid? && order_item.save && order.save
       broadcast :valid, quantity
     else
-      broadcast :invalid, item_errors
+      broadcast :invalid, parse_errors(@order_item)
     end
   end
 
@@ -19,9 +19,5 @@ class AddToCart < Rectify::Command
 
   def order_item
     @order_item ||= order.add_order_item(book_id, quantity)
-  end
-
-  def item_errors
-    @order_item.errors.full_messages.join('. ') if order_item.present?
   end
 end  

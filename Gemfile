@@ -39,13 +39,14 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'rails-controller-testing'
+  gem 'shoulda', '>= 3.4.0'
   gem 'with_model'
 end
 
 group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
 end
 
 group :development do

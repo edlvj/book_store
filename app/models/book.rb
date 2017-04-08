@@ -6,5 +6,8 @@ class Book < ApplicationRecord
   has_many :reviews
   has_many :order_items
   
+  validates :title, :price, presence: true
+  validates :price, numericality: { greater_than: 0 }
+
   mount_uploader :image, BookImageUploader
 end

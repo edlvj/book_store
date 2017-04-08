@@ -1,10 +1,10 @@
-- haml_tag "##{type}" do
+- haml_tag "##{type}", style: "display: #{'none' if is_use_billing? && type == :shipping_address } " do
   = f.simple_fields_for type, form, id: "#{type}" do |field|
     = render 'address_fields', field: field
 - if type == :shipping_address
   .form-group.checkbox
     %label.font-weight-light.pl-0
-      = check_box_tag :use_billing, true , false, class: 'checkbox-input', hidden: "true"
+      = check_box_tag :use_billing, true , is_use_billing? , class: 'checkbox-input', hidden: "true"
       %span.checkbox-icon#select_shipp
         %i.fa.fa-check
       %span.checkbox-text= t('checkout.use_billing')

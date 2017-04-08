@@ -1,15 +1,13 @@
 require 'features/features_spec_helper'
 
 describe 'Catalog List', type: :feature do
+  
   before do
-    30.times do |item|
-      create :book
-    end
-
+    create_list(:book, 30) 
     visit books_path
   end
   
-   context 'Show Catalog List' do
+  context 'Show Catalog List' do
     scenario 'contains 12 elements on page' do
       expect(page).to have_selector('.col-xs-6.col-sm-3', count: 12)
     end
@@ -21,8 +19,9 @@ describe 'Catalog List', type: :feature do
     end 
     
     scenario 'must go to cart path' do
-      first('button.thumb-hover-link').click
-      expect(page.current_path).to eq carts_path
-    end  
+      first('button.thumb-hover-link.buy').click
+      expect(page).to have_content(I18n.t('flash.success.book_add', count: 1))
+    end 
+  
   end
 end  

@@ -11,10 +11,13 @@ class User < ApplicationRecord
           class_name: Address, foreign_key: :user_id,
           dependent: :destroy
           
-   has_one :user_billing,
+  has_one :user_billing,
           -> { where addressable_type: 'billing_address' },
           class_name: Address, foreign_key: :user_id,
           dependent: :destroy
+          
+  validates :firstname, :lastname, length: { maximum: 50 }        
+  validates :email, length: { maximum: 63 }, presence: true
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
@@ -22,8 +25,7 @@ class User < ApplicationRecord
       u.password = Devise.friendly_token[0,20]
       u.firstname = auth.info.first_name
       u.lastname = auth.info.last_name
-      
-      user.image = auth.info.image 
+      u.image = auth.info.image 
     end
   end
   

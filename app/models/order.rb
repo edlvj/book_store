@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   include CurrentOrder
   include AASM
+  
   belongs_to :user
   belongs_to :shipping
   
@@ -19,7 +20,10 @@ class Order < ApplicationRecord
           dependent: :destroy
   
   accepts_nested_attributes_for :order_items, allow_destroy: true
-
+  accepts_nested_attributes_for :credit_card
+  accepts_nested_attributes_for :order_shipping
+   accepts_nested_attributes_for :order_billing
+  
   aasm do
     state :in_progress, :initial => true
     state :in_queue
@@ -44,7 +48,7 @@ class Order < ApplicationRecord
     end
   end
   
-  def self.assm_states
+  def self.aasm_states
     aasm.states.map(&:name)
   end
 end

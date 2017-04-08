@@ -17,5 +17,4 @@ class ReviewDecorator < Drape::Decorator
   def verified
     "Verified Reviewer"
   end  
-  
 end

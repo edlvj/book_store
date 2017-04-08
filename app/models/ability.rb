@@ -4,19 +4,14 @@ class Ability
   def initialize(user)
     case user
       when User
-        can [:read, :update], [Book, Category]
+        can :read, [Book, Category, Order]
         can :create, Review
-        can :update, Coupon
-        can :manage, OrderItem
-        can :read, Order
+        can :update, [Coupon, Book]
+        can :manage, [OrderItem, User]
       when AdminUser  
-         can :read, [Address, Coupon, CreditCard, User, AdminUser]
-         can :manage, [Author, Book, Category, AdminUser, OrderItem]
-         can :update, Order
+         can :manage, [Author, Book, Category, AdminUser, OrderItem, Order]
       else
-        can :read, [Book, Category]
-        can :show, Book
-        can :read, Review
+        can :read, [Book, Category, Review]
     end     
   end  
 end

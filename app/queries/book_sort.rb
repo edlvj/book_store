@@ -41,4 +41,4 @@ class BookSort < Rectify::Query
   def by_category(category)
     @books.joins(:category).where( 'lower(categories.name) = ?', category.downcase)
   end  
-end  
+end

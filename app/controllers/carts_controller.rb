@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   include ApplicationHelper
+  include Rectify::ControllerHelpers
   
   def index
     @coupon_form = Coupon.new
@@ -23,7 +24,8 @@ class CartsController < ApplicationController
                    notice: t('flash.success.cart_update') }
       on(:checkout) { redirect_to checkout_path(:address) }
       on(:invalid) do |errors|
-        flash[:alert] = t('flash.failure.cart_update', error: parse_error(errors, :code))
+        expose coupon_form: errors
+        flash[:alert] = t('flash.failure.cart_update')
         render :index
       end
     end
@@ -36,7 +38,7 @@ class CartsController < ApplicationController
                         title: order_item.book.title)
     else
       flash[:alert] = t('flash.failure.book_destroy',
-                        errors: order_item.decorate.all_errors)
+                        errors: order_item.errors.full_messages.first)
     end
     redirect_back(fallback_location: carts_path)
   end  

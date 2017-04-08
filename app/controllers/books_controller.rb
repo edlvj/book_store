@@ -1,22 +1,29 @@
 class BooksController < ApplicationController
-  load_and_authorize_resource
+  include Rectify::ControllerHelpers
+  load_and_authorize_resource only: [:update, :show]
+  before_action :set_review_form,  only: [:update, :show]
   
   def index
     @presenter = Books::CatalogPresenter.new(params)
   end
   
-  def show
-    @review_form = Review.new
-  end
-  
   def update
     CreateReview.call(user: current_user, book: @book, params: params) do
       on(:valid) do |book|
-        redirect_to @book, notice: t('flash.success.created_review')
+        flash[:notice] = t('flash.success.created_review')
+        redirect_to book
       end
       on(:invalid) do |review_form|
-        flash_render :show, alert: t('flash.failure.created_review')
+        expose review_form: review_form
+        flash[:alert] = t('flash.failure.created_review')
+        render :show
       end
     end
   end 
+  
+  private
+  
+  def set_review_form
+    @review_form = Review.new
+  end  
 end

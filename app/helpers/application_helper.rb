@@ -7,8 +7,8 @@ module ApplicationHelper
   def edit_link(type)
     link_to I18n.t('checkout.edit'), checkout_path(type)
   end 
-
-  def parse_error(obj, field)
-    obj.errors.full_messages_for(field).first
-  end
+  
+  def parse_errors(model)
+    model.errors.full_messages.join('. ') if model.errors.present?
+  end  
 end

@@ -1,24 +1,24 @@
 %main.container.general-main-wrap
   .text-center
     %h3.general-login-title Sign Up
-    = link_to user_facebook_omniauth_authorize_path, :class => "general-login-icon" do
+    = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "general-form"}) do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "general-form" }) do |f|
     = devise_error_messages!
     .form-group.mb-30
-      = f.label :email, "Enter Email", :class => "control-label font-weight-light"
-      = f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Enter Email"
+      = f.label :email, "Enter Email", class:  "control-label font-weight-light"
+      = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Enter Email"
     .form-group.mb-30
-      = f.label :password, "Password", :class => "control-label font-weight-light"
-      = f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Password"
+      = f.label :password, "Password", class: "control-label font-weight-light"
+      = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
     .form-group.mb-30
-      = f.label :password_confirmation, "Confirm Password", :class => "control-label font-weight-light"
-      = f.password_field :password_confirmation, autocomplete: "off", :class => "form-control", :placeholder => "Confirm Password"
+      = f.label :password_confirmation, "Confirm Password", class: "control-label font-weight-light"
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm Password"
     .text-center
-      =f.submit "Sign Up", :class => "btn btn-default mb-20"
+      =f.submit "Sign Up", class: "btn btn-default mb-20"
   %p.general-sign-text.text-center
     Have an Account?
-    = link_to "Log In",  user_session_path, :class => "in-gold-500"
+    = link_to "Log In",  user_session_path, class: "in-gold-500"
      
 

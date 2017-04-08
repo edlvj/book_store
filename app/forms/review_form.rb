@@ -1,7 +1,7 @@
 class ReviewForm < Rectify::Form
   attribute :title, String
-  attribute :rating, String
   attribute :comment, String
+  attribute :rating, Integer
   attribute :book_id, Integer
   attribute :user_id, Integer
   

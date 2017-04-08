@@ -1,6 +1,6 @@
 ActiveAdmin.register Review do
   permit_params :comment, :rating, :user_id, :book_id
-  actions :index, :show, :edit
+  actions :index, :show
   
   index :as => ActiveAdmin::Views::IndexAsTable do
     selectable_column
@@ -8,7 +8,7 @@ ActiveAdmin.register Review do
       review.book.title
     end
     column :user, sortable: :user do |review|
-      review.user.name
+      review.user.firstname
     end
     state_column :state, sortable: :state, states: { approved: "approved" , declined: "rejected"  } do |review|
       review.state
@@ -25,7 +25,7 @@ ActiveAdmin.register Review do
     end
     
     actions defaults: true do |review|
-      if review.state == :pending
+      if review.pending?
         item link_to('Approve ', admin_review_path(review, params.permit(:status).merge(status: :approved)), method: :patch)
         item link_to('Reject ', admin_review_path(review, params.permit(:status).merge(status: :declined)), method: :patch)
       end  

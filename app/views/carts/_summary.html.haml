@@ -3,10 +3,10 @@
     .col-sm-4
       .input-group.general-input-group
         %label.font-weight-light= t('cart.enter_coupon')
-        = fields_for :coupon, @coupon_form do |coupon_field|
-          = coupon_field.text_field :code, class: "form-control mb-30", placeholder: t('cart.enter_coupon')
+        = simple_fields_for :coupon, @coupon_form  do |coupon_field|
+          = coupon_field.input :code, class: "mb-30", placeholder: t('cart.enter_coupon'), label: false 
         %div
-          = submit_tag t('cart.update_cart'), class: "btn btn-primary mb-15 res-block"
+          = submit_tag t('cart.update_cart'), class: "btn btn-primary mb-15", id: 'update_coupon', style: "margin-top: 10%;"
     .col-sm-8
       .res-mr-200.text-center.general-text-right
         %p.in-gold-500.font-18= t('cart.order_summary')

@@ -2,10 +2,22 @@
   - if current_order.order_items.present?
     %h1.general-title-margin= t('cart.cart')
     .hidden-xs
-    = form_for current_order, url: cart_path(current_order.id), method: :put do |f|
-      = f.fields_for :order_items do |ff|
-        = render 'carts/items', ff: ff
-        = render 'carts/summary'
-        = submit_tag t('cart.checkout'), class: "btn btn-default mb-20 hidden-xs center-block", name: :to_checkout
+    = simple_form_for current_order, url: update_carts_path, method: :put, html: { id: 'cart_coupon_form' } do |f|
+      %table.table.table-hover
+        %tr.no-hover
+          %th.col-pic.pl-0
+            %span.in-grey-600= t('cart.product')
+          %th.col-title
+          %th.col-price
+            %span.in-grey-600= t('cart.price')
+          %th.col-quantity
+            %span.in-grey-600= t('cart.quantity')
+          %th.col-total
+            %span.in-grey-600= t('cart.subtotal')
+          %th.col-close
+            = f.fields_for :order_items do |ff|
+              = render 'carts/items', ff: ff, item: ff.object
+      = render 'carts/summary'
+      = submit_tag t('cart.checkout'), class: "btn btn-default mb-20 hidden-xs center-block", name: :to_checkout
   - else
-    %h1.general-title-margin= t('cart.no_items')
+    %h1.general-title-margin.text-center= t('cart.no_items')

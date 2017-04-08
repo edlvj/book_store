@@ -4,10 +4,10 @@ en:
       created_review: "Your review wasn't created"
       book_add: "Book wasn't add book to cart %{errors}"
       book_destroy: "Can't destroy this book from your cart %{errors}"
-      cart_update: "Your cart wasn't updated, cause %{error}"
+      cart_update: "Your cart wasn't updated"
       privacy_update: "Your privacy data wasn't updated"
       confirm_terms: "You must confirm terms about destroy account"
-      step: "You dom't able perform this step"
+      step: "You don't able perform this step"
       address_update: "You address wasn't updated"
     success:
       created_review: "Your review successfully created and sent for approval by administator"

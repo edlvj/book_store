@@ -1,33 +1,20 @@
-%table.table.table-hover
-  %tr.no-hover
-    %th.col-pic.pl-0
-      %span.in-grey-600= t('cart.product')
-    %th.col-title
-    %th.col-price
-      %span.in-grey-600= t('cart.price')
-    %th.col-quantity
-      %span.in-grey-600= t('cart.quantity')
-    %th.col-total
-      %span.in-grey-600= t('cart.subtotal')
-    %th.col-close
-  - current_order.order_items.each do |item|
-    %tr
-      %td
-        .general-img-wrap-table
-          = image_tag(item.book.image, class: "cart-img-shadow pull-left width-full") 
-      %td
-        %p.general-title= item.book.title
-      %td
-        = content_tag(:span, price_in_currency(item.book.price), class: "font-16 in-gold-500")
-      %td
-        .input-group
-          = content_tag(:a, onclick: "decQty(#{"'qty_#{item.id}'"})", class: "input-link") do
-            %i.fa.fa-minus.line-height-40
-          = ff.text_field :qty, value: item.qty, class: "form-control quantity-input", id: "qty_#{item.id}"
-          = content_tag(:a, onclick: "incQty(#{"'qty_#{item.id}'"})", class: "input-link") do
-            %i.fa.fa-plus.line-height-40
-      %td
-        %span.font-16.in-gold-500= price_in_currency(item.sub_total)
-      %td
-        = link_to cart_path(item.id), class: "close general-cart-close", method: :delete do
-          %span{'aria-hidden': "true"} &times;
+%tr
+  %td
+    .general-img-wrap-table
+      = image_tag(item.book.image, class: "cart-img-shadow pull-left width-full") 
+  %td
+    %p.general-title= item.book.title
+  %td
+    = content_tag(:span, price_in_currency(item.book.price), class: "font-16 in-gold-500")
+  %td
+    .input-group
+      = content_tag(:a, onclick: "decQty(#{"'qty_#{item.id}'"})", class: "input-link") do
+        %i.fa.fa-minus.line-height-40
+      = ff.text_field :qty, value: item.qty, class: "form-control quantity-input", id: "qty_#{item.id}", pattern: "[0-9]{1,}", title: "Only positive integer digit"
+      = content_tag(:a, onclick: "incQty(#{"'qty_#{item.id}'"})", class: "input-link") do
+        %i.fa.fa-plus.line-height-40
+  %td
+    %span.font-16.in-gold-500= price_in_currency(item.sub_total)
+  %td
+    = link_to cart_path(item.id), class: "close general-cart-close", method: :delete do
+      %span{'aria-hidden': "true"} &times;

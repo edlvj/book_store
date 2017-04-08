@@ -17,13 +17,13 @@ class UpdateOrder < Rectify::Command
 
   private
 
-  def cart_params
+  def order_params
     params.require(:order).permit(order_items_attributes: [:id, :qty])
   end
 
   def update_cart
     order.coupon = coupon if coupon.present?
-    order.update_attributes(cart_params)
+    order.update_attributes(order_params)
   end
 
   def coupon

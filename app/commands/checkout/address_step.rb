@@ -1,49 +1,39 @@
 module Checkout
   class AddressStep < Rectify::Command
+    include UserAddress
     
     def initialize(order, params, user)
       @order = order
-      @params = params.permit!
       @user = user
-      @billing = Address.where(user_id: user.id, addressable_type: 'billing_address').first || Address.new
-      @shipping = Address.where(user_id: user.id, addressable_type: 'shipping_address').first || Address.news
-      @errors = {}
+      @params = params.permit!
+      local_params = { user_id: user.id, order_id: order.id }
+      set_params(params[:order], local_params, params[:use_billing])
+      set_addresses(user)
     end
     
     def call
-      if check_address && addresses_update
+      if addresses_valid? && addresses_update
         broadcast :valid 
       else
-        @errors[:billing_address] = @billing_address
-        @errors[:shipping_address] = @shipping_address
-        broadcast :invalid, @errors
+        broadcast :invalid, addresses_errors
       end
     end
     
     private
     
-    def check_address
-      @billing_address = AddressForm.new(billing_params)
-      @shipping_address = AddressForm.new(shipping_params)
-      [@billing_address, @shipping_address].compact.all?(&:valid?)
-    end 
-    
-    def addresses_update
-      set_address(billing_params) && set_address(shipping_params)
-    end
-
-    def billing_params
-      @params[:order][:billing_address].merge({user_id: @user.id, order_id: @order.id, addressable_type: 'billing_address'})
-    end
-    
-    def shipping_params
-      @shipp = @params[:use_billing] == 'true' ? @params[:order][:billing_address] : @params[:order][:shipping_address]
-      @shipp.merge({user_id: @user.id, order_id: @order.id, addressable_type: 'shipping_address'})
+    def addresses_errors
+      [@billing, @shipping].map { |address| [ address.addressable_type, address] }.to_h
     end
   
-    def set_address(type)
-      @address_type = AddressForm.new(type).to_h.except(:id)
-      @shipping.update_attributes(@address_type) && @billing.update_attributes(@address_type)
-    end 
+    def addresses_valid?
+      [@billing, @shipping].map(&:valid?).all?
+    end
+    
+    def addresses_update
+      [@billing, @shipping].map do |address|
+        eval("@#{address.addressable_type}").update_attributes(address.to_h.except(:id))
+      end
+    end
+ 
   end
 end

@@ -19,4 +19,4 @@
           %h3.general-subtitle= t('checkout.shipping_address')
         = render 'address_form', f: f, type: :shipping_address, form: @shipping_address
     = render 'summary', pos: 'left', order: current_order
-    = button_tag t('checkout.save_and_continue'), class: "btn center-block mb-20"
+    = button_tag t('checkout.save_and_continue'), class: "btn btn-default center-block mb-20 "

@@ -1,5 +1,8 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin= t('orders.order', number: @order.id)
-  = render 'checkout/order_info', current_order: @order, edit: false
-  = render 'checkout/order_items', order: @order
-  = render 'checkout/summary', pos: "right", order: @order
+  - if !@order.in_progress?
+    %h1.general-title-margin= t('orders.order', number: @order.id)
+    = render 'checkout/order_info', current_order: @order, edit: false
+    = render 'checkout/order_items', order: @order
+    = render 'checkout/summary', pos: "right", order: @order
+  - else
+    %h1.text-center= t('order.not_confirmed')

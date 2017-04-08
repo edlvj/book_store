@@ -1,18 +1,19 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'spec_helper'
+
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
+require 'spec_helper'
 require 'rspec/rails'
-require 'shoulda/matchers'
 require 'aasm/rspec'
-require 'with_model'
+require 'rectify/rspec'
 
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/rspec/matchers'
+require 'with_model'
 
 %w(support).each do |folder|
   Dir[Rails.root.join("spec/#{folder}/**/*.rb")].each do |component|
@@ -27,6 +28,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   
   config.include Rails.application.routes.url_helpers
+  config.include Rectify::RSpec::Helpers
   config.include ActionDispatch::TestProcess
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FactoryGirl::Syntax::Methods

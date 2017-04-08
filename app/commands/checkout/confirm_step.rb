@@ -17,6 +17,8 @@ module Checkout
       broadcast :valid
     end  
     
+    private
+    
     def send_to_mail
       ConfirmMailer.complete(@user, @order).deliver
     end

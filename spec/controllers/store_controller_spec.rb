@@ -11,11 +11,10 @@ describe StoreController, type: :controller do
   
   describe 'GET #index' do
     it 'get presenter' do
-      params = { sort: 'title_asc' }
+      params = { category: 'Mobile Development' }
       allow(controller).to receive(:params).and_return(params)
-      expect(Books::MainPresenter).to receive(:new).with(params)
+      expect(Books::IndexPresenter).to receive(:new).with(params)
       get :index
     end
   end
-  
 end  

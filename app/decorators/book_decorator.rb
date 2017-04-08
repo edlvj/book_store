@@ -8,11 +8,10 @@ class BookDecorator < Drape::Decorator
   end  
    
   def price_in_currency
-    h.number_to_currency price, :unit=>'€'
+    h.number_to_currency price, unit: '€'
   end
   
   def short_description
     truncate description, length: 200
   end  
-
 end   

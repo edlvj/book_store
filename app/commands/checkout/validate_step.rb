@@ -1,17 +1,18 @@
 module Checkout
   class ValidateStep < Rectify::Command
+    attr_accessor :ability_for
+    
     def initialize(step, order)
       @step = step
       @order = order
     end
     
     def call
+    #  raise @step.inspect
       return broadcast(:invalid) unless @step && @order
       ability_for(@step) ? broadcast(:ok) : broadcast(:invalid)
     end
-    
-    private
-    
+
     def ability_for step
       case step
         when :address  then true
@@ -24,12 +25,14 @@ module Checkout
       end
     end
     
+    private
+    
     def delivery_able?
       @order.order_billing && @order.order_shipping
     end
     
     def payment_able?
-      delivery_able? &&  @order.shipping.present?
+      delivery_able? && @order.shipping.present?
     end
   
     def confirm_able?

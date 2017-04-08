@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 main {
   margin-top: 30px;
   flex: 1;
@@ -9,6 +11,12 @@ main {
 
 footer {
   flex: none;
+}
+
+.morelink {
+  color: #c59c71 !important;
+  margin-left: 10px !important;
+  text-decoration: none;
 }
 
 .in-white {
