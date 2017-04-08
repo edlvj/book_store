@@ -5,7 +5,7 @@ ActiveAdmin.register Book do
     selectable_column
 
     column :image, style: :thumb do |book|
-      image_tag(book.image.url)
+      image_tag(book.image.url, :size => "200x250")
     end
     
     column :title, sortable: :title do |book|
