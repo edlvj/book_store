@@ -6,7 +6,7 @@ module UserAddress
     def set_addresses user
       [:billing, :shipping].map do |type|
         instance_variable_set("@#{type}_address", Address.find_by(user_id: user.id, addressable_type: "#{type}_address") || Address.new )
-        set_names(eval("@#{type}_address"), user)
+        set_names(@billing_address, user)
       end    
     end 
     
