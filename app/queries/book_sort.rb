@@ -19,7 +19,7 @@ class BookSort < Rectify::Query
   end
 
   def popular
-    @books.joins(:order_items).order('order_items.qty desc')
+    @books.joins(:order_items).group('order_items.book_id', 'books.id').order('SUM(order_items.qty) desc')
   end
   
   def price_hl

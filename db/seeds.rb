@@ -9,6 +9,14 @@ AUTHORS_FOR_ONE_BOOK = 1..3
 ORDERS_AMOUNT_RANGE = 0..2
 ORDER_ITEMS_AMOUNT_RANGE = 1..3
 
+BOOK_IMAGES = ['https://lh6.googleusercontent.com/s624Am4SwpbuUr2PoLqo7O9d4LB0qNlVK2Mt4YAOAnzLz4xQk5H3WMoTKN6igKtT1y2xihDARWjn2xo=w1920-h934-rw',
+               'https://lh3.googleusercontent.com/V_T0wlerwtXOqKqWb4O-AH_hTBRGBVvAC0s94evyv4pExaTc7A3QGbqYsj_1Nzi7AlCpMNnIzuhp1jY=w1920-h934-rw',
+               'https://lh4.googleusercontent.com/UcGPsoy4YP0a_9sgI-R8yM8A8A_bLvLoTr5RpEKMeymdL9H9OzwcLlMpfbb5e4dxZgmvZVgKbilm26w=w1920-h934-rw',
+               'https://lh4.googleusercontent.com/upwLh_DdSu1l2pWyH9IroSOiyWE7EzglwWhX1mTVst6-L7lE7jErS2of6EdzuSDUUk2d5ZCM9DjXsIc=w1920-h934',
+               'https://lh3.googleusercontent.com/2i7T9nIp3N1dm7-Z7nd5MCFJsClXDKt91eoUP898qsMjwOXnG54yc3xMUNfk4U3Jrl0-QQKkLZrL8mY=w1920-h934',
+               'https://lh6.googleusercontent.com/neQBswK9tZirQfluJL0aSbCkYrXccorFkOgjJwlT6SkCPZ9UJUtL8OeC6aQvDm3w9KE2xYMI6kBJ_-I=w1920-h934-rw',
+               'https://lh4.googleusercontent.com/JFeUJCz7hG0Cy56Z-k2BGzzuUkJzuBvCcXQbKCJlN8-GxQ4L0X2bXE9Wo4GFSyExpvx4p16iXeCBhx4=w1920-h934']
+
 ORDER_STATES = [:processing,
                 :in_delivery,
                 :delivered,
@@ -42,6 +50,7 @@ Category.find_each do |category|
     Book.find_or_create_by! title: FFaker::CheesyLingo.title,
                             price: rand(BOOK_PRICE_RANGE).round(2),
                             description: FFaker::HealthcareIpsum.paragraph,
+                            image: BOOK_IMAGES.sample,
                             category_id: category.id,
                             pub_year: rand(1990..Date.today.year),
                             dimension: 'H:7.0 x W:4.4 x D:10.0'

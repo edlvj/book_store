@@ -13,8 +13,4 @@ class ReviewDecorator < Drape::Decorator
   def username
     "#{object.user.firstname} #{object.user.lastname}"
   end  
-  
-  def verified
-    "Verified Reviewer"
-  end  
 end

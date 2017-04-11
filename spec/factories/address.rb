@@ -22,6 +22,5 @@ FactoryGirl.define do
   end
   
   factory :address_order, parent: :type_address do
-   # addressable { create :order }
   end
 end  
