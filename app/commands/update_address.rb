@@ -4,9 +4,8 @@ class UpdateAddress < Rectify::Command
   
   def initialize(user, params)
     @user = user
-    @params = params.permit!
-    local_params = { user_id: user.id }
-    set_params(params[:address], local_params)
+    @params = params
+    set_params(params[:address], { user_id: user.id })
     set_addresses(user)
   end
   
@@ -35,6 +34,6 @@ class UpdateAddress < Rectify::Command
   end
   
   def curr_address
-    @curr_address = @params[:address][:billing_address] ? @billing : @shipping
+    @params[:address][:billing_address] ? @billing : @shipping
   end  
 end  

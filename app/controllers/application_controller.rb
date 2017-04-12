@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   
   def checkout_login
     return if user_signed_in?
-    redirect_to sign_up_path(:checkout) if :authenticate_user!
+    redirect_to sign_in_path(:checkout) if :authenticate_user!
   end
   
   protected

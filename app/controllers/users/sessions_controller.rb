@@ -7,6 +7,7 @@ class Users::SessionsController < Devise::SessionsController
    def create
      super do
        if params[:type] == "checkout"
+         raise params.inspect
          resource.skip_password_validation = true
          resource.save
        end

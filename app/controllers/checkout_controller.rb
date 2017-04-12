@@ -32,7 +32,7 @@ class CheckoutController < ApplicationController
   private
   
   def set_payment
-    @credit_card = CreditCard.find_by(order_id: current_order.id) || CreditCard.new
+    @credit_card = CreditCard.find_by(user_id: current_user.id) || CreditCard.new
   end  
   
   def confirm_redirect?

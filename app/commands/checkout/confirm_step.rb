@@ -7,7 +7,7 @@ module Checkout
     end
     
     def call
-      return broadcast :invalid if @user.blank? && @order.blank?
+      return broadcast :invalid if @user.blank? || @order.blank?
       transaction do
         @order.queued!
         @order.update_attribute(:confirmed_date, DateTime.now)

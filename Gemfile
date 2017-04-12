@@ -14,7 +14,7 @@ gem 'devise', '4.2.0'
 gem 'haml-rails', '~> 0.9'
 gem 'aasm', '4.11.1'
 gem 'wicked', '1.3.0'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 0.9'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rectify'
@@ -32,6 +32,8 @@ gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'simple_form'
+gem 'carrierwave-dropbox'
+gem 'figaro'
 
 
 group :development, :test do

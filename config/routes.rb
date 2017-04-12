@@ -9,8 +9,8 @@ Rails.application.routes.draw do
                                     omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'user/setting', to: 'users/registrations#edit', as: :setting
-    get "sign_in/:type", to: 'users/sessions#new', as: :sign_up
-    post "sign_up/:type", to: 'users/sessions#create'
+    get "sign_in/:type", to: 'users/sessions#new', as: :sign_in
+    post "sign_up/:type", to: 'users/sessions#create', as: :sign_up
   end
 
   resources :store, only: [:index]

@@ -5,7 +5,7 @@ module Checkout
     def initialize(order, params, user)
       @order = order
       @user = user
-      @params = params.permit!
+      @params = params
       local_params = { user_id: user.id, order_id: order.id }
       set_params(params[:order], local_params, params[:use_billing])
       set_addresses(user)
@@ -34,6 +34,5 @@ module Checkout
         eval("@#{address.addressable_type}").update_attributes(address.to_h.except(:id))
       end
     end
- 
   end
 end

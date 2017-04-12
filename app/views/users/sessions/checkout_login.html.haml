@@ -7,8 +7,9 @@
       .general-form
         %h3.grey-600= t('labels.quik_register')
         %p.general-login-text= t('labels.quik_notice')
-      = form_for resource, as: resource_name, html: { id: 'email_login' }, url: sign_up_path(resource, type: 'checkout') do |f|
+      = form_for resource, as: resource_name, html: { id: 'email_login' }, url: sign_up_path(resource, type: 'checkout'), method: :post do |f|
         .form-group.mb-30
+          = hidden_field_tag :checkout_auth, true
           = f.label :email, t('labels.email'), class: "control-label font-weight-light"
           = f.email_field :email, placeholder: "Email", class: "form-control", type: "email"
         = f.submit t("labels.continue_to_checkout"), class: "btn btn-default center-block mb-25"

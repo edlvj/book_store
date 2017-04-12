@@ -1,5 +1,7 @@
 module Checkout
   class DeliveryStep < Rectify::Command
+    attr_reader :order, :params
+    
     def initialize(order, params, user = nil)
       @order = order
       @params = params
