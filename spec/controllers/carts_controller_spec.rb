@@ -116,11 +116,8 @@ RSpec.describe CartsController, type: :controller do
       end
     end
     
-    it 'notice flash' do
-      expect(flash[:notice]).to eq I18n.t('flash.success.book_destroy', title: subject.order_items.book.title)
-    end
-    it 'redirect to cart' do
-      expect(response).to redirect_to(carts_path)
+    it 'return 200' do
+      expect(response).to have_http_status(200)
     end
   end    
 end    

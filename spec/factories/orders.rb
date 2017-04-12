@@ -10,7 +10,6 @@ FactoryGirl.define do
       order_items { create_list(:order_item, 2) }
       order_shipping { create :address_order, :shipping }
       order_billing { create :address_order, :billing }
-      coupon
       credit_card
     end
 
