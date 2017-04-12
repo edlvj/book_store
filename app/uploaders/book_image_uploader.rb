@@ -1,7 +1,6 @@
 class BookImageUploader < CarrierWave::Uploader::Base
 
-
-  if Rails.env.production?
+  if Rails.env.production? 
     storage :dropbox
   else
     storage :file
