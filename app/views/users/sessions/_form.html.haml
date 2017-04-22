@@ -3,7 +3,7 @@
   = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
     %i.fa.fa-facebook-official
   %p.general-login-text or
-= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "general-form", novalidate: "novalidate" }) do |f|
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "general-form" }) do |f|
   .form-group.mb-30
     = f.label :email, t('labels.enter_email'), class: "control-label font-weight-light"
     = f.email_field :email, autocomplete: "off", class: "form-control", placeholder: t('labels.enter_email')

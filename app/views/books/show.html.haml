@@ -45,6 +45,4 @@
     = render @book.reviews
   - if can? :create, Review
     = render 'reviews/form'
-  - else
-    = link_to t('review.sign_in'), new_user_session_path, class: "in-grey-600 small"
     

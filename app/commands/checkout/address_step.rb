@@ -22,7 +22,7 @@ module Checkout
     private
     
     def addresses_errors
-      [@billing, @shipping].map { |address| [ address.addressable_type, address] }.to_h
+     [@billing, @shipping].map { |address| [ address.addressable_type, address] }.to_h
     end
   
     def addresses_valid?

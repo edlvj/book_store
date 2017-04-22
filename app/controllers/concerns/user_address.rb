@@ -11,10 +11,10 @@ module UserAddress
     
     def set_params(params, local_params, use_billing = false)
       [:billing, :shipping].map do |type|
-        form_params = params && params[:"#{type}_address"].present? ? params[:"#{type}_address"] : Hash.new
+        form_params = params[:"#{type}_address"] if params && params[:"#{type}_address"].present?
+        form_params = params["billing_address"] if use_billing
         form_params[:user_id] = local_params[:user_id] if local_params[:user_id]
         form_params[:order_id] = local_params[:order_id] if local_params[:order_id]
-        form_params = params["billing_address"] if use_billing
         form_params[:addressable_type] = "#{type}_address"
         instance_variable_set("@#{type}", AddressForm.new(form_params))
       end

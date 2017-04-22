@@ -4,16 +4,16 @@ module CheckoutHelper
     return "step done" if past_step?(progress)
     "step"
   end
-  
-  def countries
-    Country.order(:name).pluck(:name, :id)
-  end  
-  
+
   def is_use_billing?
-    return false if @billing_address[:firstname].nil?
-    [:billing, :shipping].map do |type|
-      instance_variable_set("@#{type}", eval("@#{type}_address").attributes.except('id', 'addressable_type', 'updated_at', 'created_at'))
-    end
-    @billing == @shipping
+    session['use_billing']
+  end
+  
+  def edit_link(type)
+    link_to I18n.t('checkout.edit'), checkout_path(type)
+  end 
+  
+  def parse_errors(model)
+    model.errors.full_messages.join('. ') if model.errors.present?
   end  
 end

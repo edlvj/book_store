@@ -38,7 +38,7 @@ module CurrentOrder
     end  
     
     def total_cost
-      sub_total - coupon_total + shipping_total
+      (sub_total - coupon_total) + shipping_total
     end
   end  
 end

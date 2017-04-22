@@ -10,7 +10,7 @@ en:
     forgot_pass: "Forgot password?"
     remember_me: "Remember me"
     continue_to_checkout: "Continue to Checkout"
-    quik_register: "Quik register"
+    quik_register: "Quick register"
     quik_notice: "You'll be able to create password later"
     old_password: "Old password"
     new_password: "New Password"

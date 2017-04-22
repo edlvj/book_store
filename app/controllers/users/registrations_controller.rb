@@ -12,6 +12,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def new
+   super { return render 'users/sessions/checkout_login' if params[:type] == "checkout" }
+  end
+
+ def create
+    if params[:type] == "checkout"
+      generated_password = Devise.friendly_token.first(8)
+      user = User.create(email: params[:user][:email], password: generated_password)
+      RegistrationMailer.welcome(user, generated_password).deliver
+      sign_in(:user, user)
+      flash[:notice] = t("flash.success.checkout_login")
+      redirect_to checkout_url(:address)
+    end
+  end
+
   def edit
     super
   end
@@ -56,6 +71,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
         render :edit
       end
     end
-  end 
-
+  end
 end

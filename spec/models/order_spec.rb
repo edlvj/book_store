@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'shared_examples/current_order_concern.rb'
 
 RSpec.describe Order, :order, :type => :model do
   subject(:order) { create :order }
@@ -12,6 +13,8 @@ RSpec.describe Order, :order, :type => :model do
       it { should have_one(model_name) }
     end
     it { should accept_nested_attributes_for(:order_items) }
+    
+    it_behaves_like 'current_order'
   end
   
   context 'aasm states' do

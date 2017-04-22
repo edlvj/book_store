@@ -23,9 +23,9 @@ ActiveAdmin.register Order do
       number_to_currency(order.total_price, unit: '€')
     end
     actions do |order|
-      item link_to('In Devilery', admin_order_path(order, params.permit(:status).merge(state: :to_deliver)), method: :patch) if order.may_to_deliver?
-      item link_to('Delivered ', admin_order_path(order, params.permit(:status).merge(state: :end_deliver)), method: :patch) if order.may_end_deliver?
-      item link_to('Cancel', admin_order_path(order, params.permit(:status).merge(state: :cancel)), method: :patch) if order.may_cancel?
+      item link_to('In Devilery', admin_order_path(order, params.permit(:status).merge(state: :to_deliver)), method: :patch, class: 'btn indlv' ) if order.may_to_deliver?
+      item link_to('Delivered ', admin_order_path(order, params.permit(:status).merge(state: :end_deliver)), method: :patch, class: 'btn dlv') if order.may_end_deliver?
+      item link_to('Cancel', admin_order_path(order, params.permit(:status).merge(state: :cancel)), method: :patch, class: 'btn cncl') if order.may_cancel?
     end
   end
 

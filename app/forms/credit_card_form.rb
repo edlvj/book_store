@@ -8,9 +8,9 @@ class CreditCardForm < Rectify::Form
   
   validates_presence_of :number, :cvv, :name, :expiration_date
  
-  validates :number, format: { with: /\A[0-9]\d+/ }, length: { maximum: 16 }
+  validates :number, format: { with: /\A[0-9]\d+/ }, length: { is: 16 }
   validates :cvv, length: { in: 3..4 }
   validates :name, length: { maximum: 50 },
-                    format: { with: /[A-z]/i }
+                    format: { with: /[a-zA-zа-яA-Я]/ }
   validates :expiration_date, format: { with: /(0[1-9]|1[0-2])\/[0-9]{2}/, message: "Format must be mm/yy" }, length: { maximum: 5 }
 end

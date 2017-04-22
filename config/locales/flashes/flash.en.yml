@@ -16,3 +16,4 @@ en:
       cart_update: "Cart successfully updated"
       privacy_update: "Your privacy data successfully updated"
       address_update: "You address successfully updated"
+      checkout_login: "Check your Mail with your password!"
