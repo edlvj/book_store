@@ -5,10 +5,10 @@ ActiveAdmin.register Review do
   index :as => ActiveAdmin::Views::IndexAsTable do
     selectable_column
     column :book do |review|
-      review.book.title
+      review.book.title if review.book
     end
     column :user, sortable: :user do |review|
-      review.user.firstname
+      review.user.firstname if review.user
     end
     state_column :state, sortable: :state, states: { approved: "approved" , declined: "rejected"  } do |review|
       review.state

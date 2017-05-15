@@ -27,6 +27,4 @@ RSpec.describe CouponForm, :address_form do
     expect(subject.errors.full_messages).to include('Code ' +
       I18n.t('valid.coupon.check_order'))
   end
-  
-  
 end  

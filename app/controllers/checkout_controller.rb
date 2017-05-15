@@ -17,7 +17,7 @@ class CheckoutController < ApplicationController
   end
   
   def update
-    session['use_billing'] = params[:use_billing] ? true : false 
+    session['use_billing'] = params[:use_billing] if params[:use_billing] == "true"
     "Checkout::#{step.capitalize}Step".constantize.call(current_order, params, current_user) do
       on(:valid) do
         return redirect_to checkout_path(:confirm) if confirm_redirect?
@@ -33,7 +33,7 @@ class CheckoutController < ApplicationController
   private
   
   def set_payment
-    @credit_card = CreditCard.find_by(user_id: current_user.id) || CreditCard.new
+    @credit_card = CreditCard.find_by(order_id: current_order.id) || CreditCard.new
   end
   
   def confirm_redirect?
