@@ -22,13 +22,19 @@ module Checkout
     
     def credit_card_attributes
       card_params = credit_card_params[:credit_card_attributes].to_h
-      card_params.merge(user_id: @user.id, order_id: @order.id)
+      card_params.merge(user_id: @user.id)
     end
   
     def create_card_update
-      @card = CreditCard.find_or_initialize_by(number: @card_form.number)
-      @card.update_attributes(@card_form.to_h.except(:id))
-      @order.update_attribute(:credit_card_id, @card.id)
+      @card = CreditCard.find_by(number: @card_form.id)
+      if @card != nil
+        @card.update_attributes(@card_form.to_h.except(:id))
+      else
+        @card = CreditCard.new(@card_form.to_h.except(:id))
+        @order.credit_card = @card
+        @order.credit_card_id = @card.id
+        @order.save
+      end
     end
     
     def credit_card_params

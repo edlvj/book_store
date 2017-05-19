@@ -4,7 +4,6 @@ class CreditCardForm < Rectify::Form
   attribute :cvv, Integer
   attribute :expiration_date, String
   attribute :user_id, Integer
-  attribute :order_id, Integer
   
   validates_presence_of :number, :cvv, :name, :expiration_date
  

@@ -22,7 +22,7 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_items, allow_destroy: true
   accepts_nested_attributes_for :credit_card
   accepts_nested_attributes_for :order_shipping
-   accepts_nested_attributes_for :order_billing
+  accepts_nested_attributes_for :order_billing
   
   aasm do
     state :in_progress, :initial => true

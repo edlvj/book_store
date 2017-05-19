@@ -6,7 +6,7 @@ module Checkout
       @order = order
       @user = user
       @params = params
-      local_params = { user_id: user.id, order_id: order.id }
+      local_params = { user_id: user.id }
       set_params(params[:order], local_params, params[:use_billing])
       set_addresses(user)
     end
@@ -30,8 +30,14 @@ module Checkout
     end
     
     def addresses_update
-      [@billing, @shipping].map do |address|
-        eval("@#{address.addressable_type}").update_attributes(address.to_h.except(:id))
+      [:billing, :shipping].map do |address|
+        if eval("@order.order_#{address}") != nil
+          eval("@order.order_#{address}.update_attributes(@#{address}.to_h.except(:id))")
+        else
+          @address = eval("Address.new(@#{address}.to_h.except(:id))")
+          eval("@order.order_#{address} = @address")
+          @order.save
+        end
       end
     end
   end
