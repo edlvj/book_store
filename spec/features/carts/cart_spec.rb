@@ -1,4 +1,4 @@
-require 'features/features_spec_helper'
+require 'rails_helper'
 
 feature 'User on cart', type: :feature do
   let(:user) { create :user }
@@ -14,7 +14,7 @@ feature 'User on cart', type: :feature do
     expect(page).to have_no_content(I18n.t('cart.no_items'))
     expect(page).to have_content(item.book.title)
     expect(page).to have_content(item.qty)
-    expect(page).to have_content(order_with_items.sub_total
+    expect(page).to have_content(order_with_items.sub_total)
   end
   
   scenario 'When user have empty cart' do

@@ -1,4 +1,4 @@
-require 'features/features_spec_helper'
+require 'rails_helper'
 include Support::Forms
 
 feature 'Address step', type: :feature do

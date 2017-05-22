@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
-  = render 'form', title: t('labels.log_in')
+  = render 'form', title: t('labels.log_in'), checkout: false
   %p.general-sign-text.text-center
     = t('labels.dont_have_account')
     = link_to t('labels.sign_up'),  new_user_registration_path, class: "in-gold-500"

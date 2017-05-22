@@ -1,7 +1,7 @@
 %main.container
   .row.mb-60
     .col-sm-5
-      = render 'users/sessions/form', title: t('labels.returning_customer')
+      = render 'users/sessions/form', title: t('labels.returning_customer'), checkout: true
     .col-sm-5.col-sm-offset-1
       %h3.in-gold-500.mb-25.text-center= t('labels.new_customer')
       .general-form

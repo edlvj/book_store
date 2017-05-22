@@ -1,4 +1,4 @@
-require 'features/features_spec_helper'
+require 'rails_helper'
 
 describe 'Catalog List', type: :feature do
   

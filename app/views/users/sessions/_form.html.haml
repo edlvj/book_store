@@ -1,6 +1,6 @@
 .text-center
   %h3.general-login-title= title
-  = link_to user_facebook_omniauth_authorize_path(checkout: true), class: "general-login-icon" do
+  = link_to user_facebook_omniauth_authorize_path(checkout: checkout), class: "general-login-icon" do
     %i.fa.fa-facebook-official
   %p.general-login-text or
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "general-form" }) do |f|

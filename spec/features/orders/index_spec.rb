@@ -1,4 +1,4 @@
-require 'features/features_spec_helper'
+require 'rails_helper'
 
 feature 'Index orders', type: :feature do
   let(:user) { create :user }

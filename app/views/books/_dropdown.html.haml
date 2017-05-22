@@ -1,8 +1,8 @@
 .dropdown
   %a.dropdown-toggle.dropdown-btn.width-240{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-    = t("sort.#{items.first}")
+    = t("sort.#{ params[:sort] ? params[:sort] : items.first }")
     %i.fa.fa-angle-down.dropdown-icons
   %ul.dropdown-menu
     - items.each do |type|
-      %li
-        = link_to t("sort.#{type}"), books_path(sort: type )
+      %li{ class: "#{ params[:sort] && params[:sort].to_sym == type ? 'active' : '' }"}  
+        = link_to t("sort.#{type}"), books_path(sort: type)

@@ -2,11 +2,11 @@
   %h1.mt-0.mb-25= t('orders.my_orders')
   .dropdown.general-order-dropdown.mb-20
     %a.dropdown-toggle.dropdown-btn.width-100{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      = t("orders.#{@states.first}")
+      = t("orders.#{ params[:state] ? params[:state] : @states.first }")
       %i.fa.fa-angle-down.dropdown-icon
     %ul.dropdown-menu
       - @states.each do |state|
-        %li
+        %li{ class: "#{ params[:state] && params[:state].to_sym == state ? 'active' : '' }"} 
           = link_to t("orders.#{state}"), orders_path(state: state)
   .hidden-xs.mb-res-50
     = render 'order_items'

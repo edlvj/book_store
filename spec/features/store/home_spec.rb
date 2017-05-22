@@ -1,4 +1,4 @@
-require 'features/features_spec_helper'
+require 'rails_helper'
 
 describe 'Home', type: :feature do
   before do
