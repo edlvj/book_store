@@ -1,5 +1,10 @@
 %main.container.general-main-wrap
-  = render 'form', title: t('labels.log_in'), checkout: false
+  .text-center
+    %h3.general-login-title= t('labels.log_in')
+    = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+      %i.fa.fa-facebook-official
+    %p.general-login-text or
+  = render 'form'
   %p.general-sign-text.text-center
     = t('labels.dont_have_account')
     = link_to t('labels.sign_up'),  new_user_registration_path, class: "in-gold-500"
