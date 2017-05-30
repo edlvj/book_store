@@ -10,8 +10,7 @@ module Checkout
       return broadcast :invalid if @user.blank? || @order.blank?
       transaction do
         @order.queued!
-        @order.update_attribute(:confirmed_date, DateTime.now)
-        @order.update_attribute(:total_price, @order.total_cost)
+        @order.update_attributes(confirmed_date: DateTime.now, total_price: @order.total_cost)
         send_to_mail
       end 
       broadcast :valid
