@@ -26,7 +26,7 @@ module Checkout
     end
   
     def create_card_update
-      if @order.credit_card != nil
+      if @order.credit_card.present?
         @card = CreditCard.find_by(number: @card_form.number)
         @card.update_attributes(@card_form.to_h.except(:id))
       else

@@ -25,22 +25,22 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_billing
   
   aasm do
-    state :in_progress, :initial => true
+    state :in_progress, initial: true
     state :in_queue
     state :in_delivery
     state :delivered
     state :canceled
 
     event :queued do
-      transitions :from => :in_progress, :to => :in_queue
+      transitions from: :in_progress, to: :in_queue
     end
     
     event :to_deliver do
-      transitions :from => :in_queue, :to => :in_delivery
+      transitions from: :in_queue, to: :in_delivery
     end
     
     event :end_deliver do
-      transitions :from => :in_delivery, :to => :delivered
+      transitions from: :in_delivery, to: :delivered
     end 
     
     event :cancel do
@@ -51,4 +51,13 @@ class Order < ApplicationRecord
   def self.aasm_states
     aasm.states.map(&:name)
   end
+  
+  def self.confirmed
+    where('aasm_state != ?', 'in_progress')
+  end  
+  
+  def self.by_state(state)
+    where(aasm_state: state)
+  end
+
 end

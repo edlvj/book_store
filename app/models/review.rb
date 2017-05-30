@@ -4,16 +4,16 @@ class Review < ApplicationRecord
   belongs_to :user
   
   aasm column: :state do
-    state :pending, :initial => true
+    state :pending, initial: true
     state :approved
     state :declined
     
     event :approve do
-      transitions :to => :approved, :from => [:pending]
+      transitions to: :approved, from: [:pending]
     end
     
     event :decline do
-      transitions :to => :declined, :from => [:pending]
+      transitions to: :declined, from: [:pending]
     end
   end
   

@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   
   def index
     @states = Order.aasm_states
-    @orders = @orders.where('aasm_state != ?', 'in_progress')
-    @orders = @orders.where(aasm_state: params[:state]) if params[:state]
+    @orders = @orders.confirmed
+    @orders = @orders.by_state(params[:state]) if params[:state]
   end
 end
