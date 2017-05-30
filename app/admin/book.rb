@@ -1,7 +1,7 @@
 ActiveAdmin.register Book do
   permit_params :title, :description, :price, :image, :category_id
   
-  index :as => ActiveAdmin::Views::IndexAsTable do
+  index as: ActiveAdmin::Views::IndexAsTable do
     selectable_column
 
     column :image, style: :thumb do |book|
@@ -23,7 +23,7 @@ ActiveAdmin.register Book do
     actions
   end
   
-  form(:html => { :multipart => true }) do |f|
+  form( html: { multipart: true }) do |f|
    f.inputs "Create Product..." do
      f.input :title
      f.input :description
@@ -31,8 +31,8 @@ ActiveAdmin.register Book do
      f.input :pub_year
      f.input :dimension
      
-     f.input :category_id, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }
-     f.input :image, :as => :file
+     f.input :category_id, as: :select, collection: Category.all.collect {|category| [category.name, category.id] }
+     f.input :image, as: :file
     end
     
     f.actions

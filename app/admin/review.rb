@@ -2,7 +2,7 @@ ActiveAdmin.register Review do
   permit_params :comment, :rating, :user_id, :book_id
   actions :index, :show
   
-  index :as => ActiveAdmin::Views::IndexAsTable do
+  index as: ActiveAdmin::Views::IndexAsTable do
     selectable_column
     column :book do |review|
       review.book.title if review.book
