@@ -35,8 +35,7 @@ ActiveAdmin.register Review do
   controller do
     def update
       review = Review.find(params[:id])
-      review.approve! if params['status'] == "approved"
-      review.decline! if params['status'] == "declined"
+      review.send("#{params['status']}!")
       redirect_back(fallback_location: root_path)
     end
   end

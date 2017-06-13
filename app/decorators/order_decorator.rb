@@ -6,6 +6,6 @@ class OrderDecorator < Drape::Decorator
   end 
   
   def total_sum
-    total_price ? total_price : '0'
+    total_price || '0'
   end  
 end
